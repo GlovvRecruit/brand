@@ -4,9 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>좋은 콘텐츠를 만드는 법 | Glovv 웨비나</title>
+<link rel="icon" href="favicon.ico" sizes="any" />
 <link rel="icon" type="image/png" href="images/logo_glovv_profile.png" />
 <link rel="apple-touch-icon" href="images/logo_glovv_profile.png" />
-<link rel="shortcut icon" type="image/png" href="images/logo_glovv_profile.png" />
+<link rel="shortcut icon" href="favicon.ico" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&display=swap" rel="stylesheet" />
@@ -1918,13 +1919,12 @@ em { font-style: normal; color: var(--pink); font-weight: 600; }
 }
 @media (max-width: 768px) {
   .video-frame.lg {
-    /* 모바일에서 가로 꽉차게 (좌우 패딩 제외) */
     max-width: 100%;
     width: 100%;
   }
 }
 
-/* 큰 영상 비교 그리드 — 데스크탑은 좌우, 모바일은 위아래 + 가로 꽉차 */
+/* 큰 영상 비교 그리드 — 데스크탑 좌우, 모바일 위아래 + 가로 꽉차 */
 .video-compare-lg {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1938,7 +1938,6 @@ em { font-style: normal; color: var(--pink); font-weight: 600; }
     grid-template-columns: 1fr;
     gap: 28px;
   }
-  /* 모바일에서 video-block 자체도 가로 꽉차도록 */
   .video-compare-lg .video-block { width: 100%; }
 }
 
@@ -2033,14 +2032,10 @@ em { font-style: normal; color: var(--pink); font-weight: 600; }
     font-size: clamp(14px, 3.8vw, 16px);
     line-height: 1.6;
   }
-  /* pyramid 모바일에서 컴팩트하게 */
   .split-2col .pyramid { gap: 6px; margin-top: 8px; }
   .split-2col .pyramid-row { padding: 10px 14px; font-size: 13px; }
   .split-2col .pyramid-row.top { font-size: 15px; }
-  .split-2col .pyramid-row .item {
-    padding: 6px 10px;
-    font-size: 12px;
-  }
+  .split-2col .pyramid-row .item { padding: 6px 10px; font-size: 12px; }
   .split-2col .callout { font-size: 14px !important; padding: 14px 16px; }
 }
 
@@ -3220,7 +3215,7 @@ em { font-style: normal; color: var(--pink); font-weight: 600; }
   </div>
 </section>
 
-<!-- 31-1. 같은 제품·같은 가이드라인, 다른 ROAS (테스팅 필요성 입증 사례) -->
+<!-- 31-1. 같은 제품·같은 가이드라인, 다른 ROAS (테스팅 필요성 입증) -->
 <section class="slide" data-name="같은 제품, 같은 가이드라인, 다른 ROAS">
   <div class="slide-inner">
     <div class="section-num">SECTION 07</div>
@@ -3506,7 +3501,7 @@ em { font-style: normal; color: var(--pink); font-weight: 600; }
   <div class="slide-inner center">
     <div class="section-num">SECTION 09 · 채널별 전략과 ROAS</div>
     <h1 style="text-align: center;">채널마다 <span class="grad">성격이 다릅니다</span></h1>
-    <p class="lead" style="margin-top: 32px; text-align: center; max-width: 720px; margin-left: auto; margin-right: auto;">채널에 따라 <em>목표 ROAS, 타겟 고객</em> 모두 다를 수 있습니다.</p>
+    <p class="lead" style="margin: 32px auto 0; text-align: center; max-width: 720px;">채널에 따라 <em>목표 ROAS, 타겟 고객</em> 모두 다를 수 있습니다.</p>
   </div>
 </section>
 
