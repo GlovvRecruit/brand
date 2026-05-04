@@ -1417,6 +1417,8 @@ em { font-style: normal; color: var(--pink); font-weight: 600; }
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .nav-btn:hover:not(:disabled) {
@@ -1460,6 +1462,8 @@ em { font-style: normal; color: var(--pink); font-weight: 600; }
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .nav-center .cta-mini.kakao { background: #FEE500; color: #000; }
@@ -1537,6 +1541,65 @@ em { font-style: normal; color: var(--pink); font-weight: 600; }
     height: 32px;
   }
   .present-fs-btn svg { width: 14px; height: 14px; }
+}
+
+/* 엣지 네비게이션 버튼 (모바일 전용) — 화면 좌우 가장자리 < > */
+.edge-nav-btn {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 99;
+  width: 40px;
+  height: 64px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(24, 24, 29, 0.6);
+  border: 1px solid var(--line);
+  cursor: pointer;
+  color: var(--text-2);
+  padding: 0;
+  font-family: inherit;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: opacity .2s, background .2s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.edge-nav-btn.edge-prev {
+  left: 0;
+  border-left: 0;
+  border-radius: 0 12px 12px 0;
+}
+
+.edge-nav-btn.edge-next {
+  right: 0;
+  border-right: 0;
+  border-radius: 12px 0 0 12px;
+}
+
+.edge-nav-btn:active {
+  background: rgba(255, 47, 156, 0.25);
+}
+
+.edge-nav-btn:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.edge-nav-btn svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@media (max-width: 768px) {
+  .edge-nav-btn { display: inline-flex; }
 }
 
 /* ===== Channel cards ===== */
@@ -2517,7 +2580,7 @@ em { font-style: normal; color: var(--pink); font-weight: 600; }
         <span class="dot"></span>
         <span>Glovv Webinar</span>
       </div>
-      <h1><span class="grad">좋은 콘텐츠</span><br />를 만드는 법</h1>
+      <h1><span class="grad">좋은 콘텐츠</span>를<br />만드는 법</h1>
       <p class="hero-sub">
         2,000개+ 브랜드와 일하며 발견한<br />
         콘텐츠의 공식.
@@ -4019,6 +4082,14 @@ em { font-style: normal; color: var(--pink); font-weight: 600; }
   <svg viewBox="0 0 24 24" id="presentFsIcon"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>
 </button>
 
+<!-- 모바일 전용 좌우 엣지 네비게이션 (더블탭 줌 방지를 위해 큰 버튼 대신 가장자리 버튼 사용) -->
+<button type="button" class="edge-nav-btn edge-prev" id="edgePrevBtn" onclick="goPrev()" aria-label="이전 슬라이드">
+  <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+</button>
+<button type="button" class="edge-nav-btn edge-next" id="edgeNextBtn" onclick="goNext()" aria-label="다음 슬라이드">
+  <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+</button>
+
 <nav class="bottom-nav">
   <div class="nav-inner">
     <button class="nav-btn" id="prevBtn" onclick="goPrev()">← 이전</button>
@@ -4057,8 +4128,14 @@ function update() {
   document.getElementById('currentNum').textContent = current + 1;
   document.getElementById('sectionName').textContent = slides[current].dataset.name;
   document.getElementById('progressFill').style.width = ((current + 1) / total * 100) + '%';
-  document.getElementById('prevBtn').disabled = current === 0;
-  document.getElementById('nextBtn').disabled = current === total - 1;
+  const atFirst = current === 0;
+  const atLast = current === total - 1;
+  document.getElementById('prevBtn').disabled = atFirst;
+  document.getElementById('nextBtn').disabled = atLast;
+  const ep = document.getElementById('edgePrevBtn');
+  const en = document.getElementById('edgeNextBtn');
+  if (ep) ep.disabled = atFirst;
+  if (en) en.disabled = atLast;
   slides[current].scrollTop = 0;
 }
 
@@ -4113,6 +4190,16 @@ document.querySelectorAll('[data-jump]').forEach(btn => {
 });
 
 document.addEventListener('keydown', (e) => {
+  // 입력 요소(input, textarea, contenteditable) 안에서는 좌우 화살표가 슬라이드를 넘기지 않게 함
+  const ae = document.activeElement;
+  const isEditing = ae && (
+    ae.tagName === 'INPUT' ||
+    ae.tagName === 'TEXTAREA' ||
+    ae.tagName === 'SELECT' ||
+    ae.isContentEditable
+  );
+  if (isEditing) return;
+
   if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
     e.preventDefault();
     goNext();
