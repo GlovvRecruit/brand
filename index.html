@@ -1,0 +1,3290 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>좋은 콘텐츠를 만드는 법 | Glovv 웨비나</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+<style>
+:root {
+  --bg: #0a0a0c;
+  --bg-2: #111114;
+  --bg-3: #18181d;
+  --line: #2a2a31;
+  --text: #f5f5f7;
+  --text-2: #b8b8c0;
+  --text-3: #6e6e78;
+  --orange: #ff6b1a;
+  --pink: #ff1f6e;
+  --magenta: #ff2f9c;
+  --grad: linear-gradient(90deg, #ff6b1a 0%, #ff1f6e 50%, #ff2f9c 100%);
+  --grad-soft: linear-gradient(135deg, rgba(255,107,26,.15), rgba(255,47,156,.15));
+  --grad-radial: radial-gradient(circle at 30% 30%, rgba(255,107,26,.18), transparent 60%),
+                 radial-gradient(circle at 80% 70%, rgba(255,47,156,.18), transparent 55%);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+  height: 100vh;
+  overflow: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: var(--grad-radial);
+  pointer-events: none;
+  z-index: 0;
+  opacity: .6;
+}
+
+.header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(10, 10, 12, .8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--line);
+  height: 60px;
+}
+
+.header-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 32px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand img { height: 24px; width: auto; }
+
+.brand-divider {
+  width: 1px;
+  height: 18px;
+  background: var(--line);
+}
+
+.brand-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-2);
+}
+
+.progress-wrap {
+  flex: 1;
+  max-width: 400px;
+}
+
+.progress-bar {
+  height: 4px;
+  background: var(--bg-3);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--grad);
+  width: 0%;
+  transition: width .5s cubic-bezier(.4, 0, .2, 1);
+}
+
+.progress-text {
+  font-size: 11px;
+  color: var(--text-3);
+  margin-top: 5px;
+  display: flex;
+  justify-content: space-between;
+  font-feature-settings: 'tnum';
+}
+
+main {
+  position: relative;
+  z-index: 1;
+  height: 100vh;
+  padding-top: 60px;
+  padding-bottom: 80px;
+  overflow: hidden;
+}
+
+.slide {
+  position: absolute;
+  inset: 60px 0 80px 0;
+  padding: 40px 48px;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  overflow-y: auto;
+  animation: fadeIn .35s ease-out;
+}
+
+.slide.active { display: flex; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.slide-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.section-num {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-3);
+  letter-spacing: 0.15em;
+  margin-bottom: 20px;
+  font-family: 'Manrope', sans-serif;
+}
+
+.section-num::before {
+  content: '';
+  width: 32px;
+  height: 1px;
+  background: var(--grad);
+}
+
+h1 {
+  font-size: clamp(36px, 5.5vw, 64px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 24px;
+}
+
+h1 .grad {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+h2 {
+  font-size: clamp(24px, 3.2vw, 36px);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+}
+
+h3 {
+  font-size: clamp(20px, 2.4vw, 26px);
+  font-weight: 700;
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+
+.lead {
+  font-size: clamp(20px, 2.2vw, 28px);
+  color: var(--text);
+  font-weight: 500;
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+p {
+  font-size: clamp(17px, 1.7vw, 20px);
+  line-height: 1.6;
+  color: var(--text-2);
+  margin-bottom: 12px;
+  max-width: 900px;
+}
+
+ul, ol {
+  font-size: clamp(17px, 1.7vw, 20px);
+  color: var(--text-2);
+  line-height: 1.7;
+  padding-left: 24px;
+}
+
+li { margin-bottom: 6px; }
+
+strong { color: var(--text); font-weight: 700; }
+em { font-style: normal; color: var(--pink); font-weight: 600; }
+
+.center { text-align: center; }
+
+.hero { text-align: center; }
+
+.hero h1 {
+  font-size: clamp(48px, 8vw, 110px);
+  margin-bottom: 24px;
+}
+
+.hero-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 20px;
+  background: var(--bg-3);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 13px;
+  color: var(--text-2);
+  margin-bottom: 32px;
+}
+
+.hero-meta .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--grad);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .4; }
+}
+
+.hero-sub {
+  font-size: clamp(18px, 2vw, 22px);
+  color: var(--text-2);
+  max-width: 700px;
+  margin: 0 auto 32px;
+}
+
+.speaker {
+  font-size: 15px;
+  color: var(--text-3);
+}
+
+.agenda {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.agenda-item {
+  padding: 20px;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  transition: all .25s;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  color: inherit;
+}
+
+.agenda-item:hover {
+  border-color: var(--pink);
+  transform: translateY(-2px);
+  background: var(--bg-3);
+}
+
+.agenda-num {
+  font-family: 'Manrope', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+}
+
+.agenda-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 10px;
+  margin-bottom: 4px;
+  color: var(--text);
+}
+
+.agenda-desc {
+  font-size: 13px;
+  color: var(--text-3);
+}
+
+@media (max-width: 768px) {
+  .agenda { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .agenda-item { padding: 14px; }
+  .agenda-title { font-size: 14px; }
+  .agenda-desc { font-size: 11px; }
+}
+
+.quiz {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.quiz-card {
+  padding: 24px;
+  border-radius: 18px;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  text-align: center;
+}
+
+.quiz-card .label {
+  font-family: 'Manrope', sans-serif;
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.quiz-card.a .label { color: var(--orange); }
+.quiz-card.b .label { color: var(--magenta); }
+
+.quiz-card .roas {
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 12px;
+}
+
+.video-placeholder {
+  aspect-ratio: 9/16;
+  max-width: 240px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, var(--bg-3), var(--bg));
+  border: 2px dashed var(--line);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-3);
+  font-size: 13px;
+  position: relative;
+  overflow: hidden;
+}
+
+.video-placeholder::after {
+  content: '▶';
+  position: absolute;
+  font-size: 40px;
+  opacity: 0.15;
+}
+
+.video-placeholder .label {
+  position: relative;
+  z-index: 2;
+  background: rgba(0,0,0,.6);
+  padding: 6px 12px;
+  border-radius: 6px;
+  backdrop-filter: blur(8px);
+}
+
+.video-placeholder.wide {
+  aspect-ratio: 16/9;
+  max-width: 100%;
+}
+
+/* ===== Vimeo Embed ===== */
+.video-embed {
+  aspect-ratio: 9/16;
+  max-width: 240px;
+  margin: 0 auto;
+  background: #000;
+  border-radius: 14px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, .35);
+}
+
+.video-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.video-embed.wide {
+  aspect-ratio: 16/9;
+  max-width: 100%;
+}
+
+.video-embed.tight {
+  max-width: 200px;
+}
+
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 28px;
+}
+
+.pillar {
+  padding: 28px 22px;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  text-align: center;
+}
+
+.pillar-num {
+  font-family: 'Manrope', sans-serif;
+  font-size: 56px;
+  font-weight: 800;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+  margin-bottom: 14px;
+}
+
+.pillar h3 {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 10px;
+}
+
+.pillar p {
+  font-size: 15px;
+  color: var(--text-3);
+  margin: 0;
+}
+
+.card {
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 28px;
+  margin-top: 20px;
+}
+
+.card.gradient-border {
+  position: relative;
+  border: 1px solid transparent;
+  background:
+    linear-gradient(var(--bg-2), var(--bg-2)) padding-box,
+    var(--grad) border-box;
+}
+
+.card-label {
+  display: inline-block;
+  padding: 4px 12px;
+  background: var(--grad-soft);
+  color: var(--pink);
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+}
+
+.comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 24px;
+}
+
+.comp-side {
+  padding: 24px;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: var(--bg-2);
+}
+
+.comp-side.bad { border-left: 4px solid #6e6e78; }
+.comp-side.good { border-left: 4px solid; border-image: var(--grad) 1; }
+
+.comp-side .tag {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  letter-spacing: 0.05em;
+}
+
+.comp-side.bad .tag { background: rgba(110, 110, 120, .2); color: var(--text-3); }
+.comp-side.good .tag { background: var(--grad-soft); color: var(--pink); }
+
+.patterns {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.pattern-row {
+  display: grid;
+  grid-template-columns: 50px 1fr 1.1fr;
+  gap: 20px;
+  align-items: center;
+  padding: 18px 22px;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  transition: all .3s;
+}
+
+.pattern-row:hover {
+  border-color: var(--pink);
+  background: var(--bg-3);
+}
+
+.pattern-num {
+  font-family: 'Manrope', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+}
+
+.pattern-flow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.pattern-flow .step {
+  padding: 5px 11px;
+  background: var(--bg-3);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  white-space: nowrap;
+}
+
+.pattern-flow .arrow {
+  color: var(--pink);
+  font-weight: 700;
+}
+
+.pattern-flow .cta {
+  background: var(--grad-soft);
+  border-color: var(--pink);
+  color: var(--pink);
+}
+
+.pattern-when {
+  font-size: 14px;
+  color: var(--text-2);
+}
+
+.pyramid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.pyramid-row {
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  padding: 16px 32px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  display: flex;
+  gap: 8px;
+}
+
+.pyramid-row.top {
+  background: var(--grad);
+  border-color: transparent;
+  color: white;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.pyramid-row .item {
+  padding: 4px 14px;
+  background: rgba(255,255,255,.04);
+  border-radius: 8px;
+}
+
+.funnel {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.funnel-step {
+  padding: 24px 20px;
+  border-radius: 16px;
+  text-align: center;
+  position: relative;
+}
+
+.funnel-step.cold {
+  background: linear-gradient(135deg, rgba(96, 165, 250, .15), rgba(59, 130, 246, .08));
+  border: 1px solid rgba(96, 165, 250, .3);
+}
+
+.funnel-step.warm {
+  background: linear-gradient(135deg, rgba(255, 159, 67, .15), rgba(255, 107, 26, .08));
+  border: 1px solid rgba(255, 159, 67, .3);
+}
+
+.funnel-step.hot {
+  background: linear-gradient(135deg, rgba(255, 47, 156, .2), rgba(255, 31, 110, .12));
+  border: 1px solid rgba(255, 47, 156, .4);
+}
+
+.funnel-step .name {
+  font-family: 'Manrope', sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.funnel-step.cold .name { color: #60a5fa; }
+.funnel-step.warm .name { color: #ff9f43; }
+.funnel-step.hot .name { color: #ff2f9c; }
+
+.funnel-step .ratio {
+  font-size: 48px;
+  font-weight: 800;
+  font-family: 'Manrope', sans-serif;
+  line-height: 1;
+  margin: 6px 0;
+}
+
+.funnel-step .desc {
+  font-size: 13px;
+  color: var(--text-2);
+  margin-top: 10px;
+}
+
+.funnel-step .strategy {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255,255,255,.08);
+  font-size: 13px;
+  color: var(--text-3);
+  text-align: left;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.stat {
+  padding: 24px;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  text-align: center;
+}
+
+.stat .num {
+  font-family: 'Manrope', sans-serif;
+  font-size: 56px;
+  font-weight: 800;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+}
+
+.stat .label {
+  font-size: 14px;
+  color: var(--text-2);
+  margin-top: 6px;
+}
+
+.test-order {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 28px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.test-order .step {
+  padding: 16px 22px;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 17px;
+  text-align: center;
+}
+
+.test-order .step .small {
+  display: block;
+  font-size: 10px;
+  color: var(--text-3);
+  font-weight: 500;
+  margin-top: 4px;
+  letter-spacing: 0.1em;
+}
+
+.test-order .arrow {
+  color: var(--pink);
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.formula {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 32px;
+}
+
+.formula-item { text-align: center; }
+
+.formula-item .num {
+  font-family: 'Manrope', sans-serif;
+  font-size: clamp(56px, 8vw, 96px);
+  font-weight: 800;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+}
+
+.formula-item p {
+  margin-top: 6px;
+  font-size: 15px;
+}
+
+.formula-op {
+  font-size: 32px;
+  color: var(--text-3);
+}
+
+.callout {
+  padding: 22px 26px;
+  background: var(--grad-soft);
+  border: 1px solid rgba(255, 47, 156, .3);
+  border-left: 4px solid var(--pink);
+  border-radius: 12px;
+  margin-top: 20px;
+  font-size: clamp(17px, 1.7vw, 20px);
+  line-height: 1.6;
+}
+
+.callout-icon {
+  font-size: 18px;
+  margin-right: 8px;
+}
+
+.img-showcase {
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 20px;
+  margin-top: 20px;
+  text-align: center;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.img-showcase img {
+  max-width: 100%;
+  max-height: 50vh;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 16px 48px rgba(0,0,0,.4);
+}
+
+.img-caption {
+  font-size: 13px;
+  color: var(--text-3);
+  margin-top: 12px;
+}
+
+.big-num {
+  display: inline-block;
+  font-family: 'Manrope', sans-serif;
+  font-size: clamp(80px, 14vw, 180px);
+  font-weight: 800;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.key-points {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 28px;
+}
+
+.key-point {
+  padding: 28px 22px;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  position: relative;
+  overflow: hidden;
+}
+
+.key-point::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 60px;
+  height: 4px;
+  background: var(--grad);
+}
+
+.key-point .num {
+  font-family: 'Manrope', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--pink);
+  letter-spacing: 0.2em;
+  margin-bottom: 10px;
+}
+
+.key-point h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 10px;
+}
+
+.key-point p {
+  font-size: 14px;
+  color: var(--text-2);
+  margin: 0;
+}
+
+.glovv-help {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.help-item {
+  padding: 22px;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.help-icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--grad);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.help-item h4 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.help-item p {
+  font-size: 13px;
+  color: var(--text-2);
+  margin: 0;
+}
+
+.cta-section {
+  text-align: center;
+  margin-top: 32px;
+  padding: 40px 24px;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--grad-radial);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.cta-section > * { position: relative; }
+
+.cta-buttons {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+.cta-btn {
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all .2s;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+}
+
+.cta-btn.primary {
+  background: var(--grad);
+  color: white;
+}
+
+.cta-btn.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(255, 47, 156, .4);
+}
+
+.cta-btn.kakao {
+  background: #FEE500;
+  color: #000;
+}
+
+.cta-btn.kakao:hover { transform: translateY(-2px); }
+
+/* Instagram Mockup */
+.insta-mockup-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.insta-phone {
+  width: 280px;
+  height: 540px;
+  background: #000;
+  border-radius: 36px;
+  border: 8px solid #1a1a1a;
+  box-shadow: 0 30px 80px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.05);
+  overflow: hidden;
+  position: relative;
+}
+
+.insta-notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 24px;
+  background: #1a1a1a;
+  border-bottom-left-radius: 14px;
+  border-bottom-right-radius: 14px;
+  z-index: 10;
+}
+
+.insta-screen {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  overflow: hidden;
+}
+
+.insta-feed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  animation: scrollFeed 10s linear infinite;
+}
+
+@keyframes scrollFeed {
+  0%, 5% { transform: translateY(0); }
+  20%, 25% { transform: translateY(-520px); }
+  40%, 45% { transform: translateY(-1040px); }
+  60%, 65% { transform: translateY(-1560px); }
+  80%, 85% { transform: translateY(-2080px); }
+  100% { transform: translateY(-2600px); }
+}
+
+.insta-post {
+  height: 520px;
+  background: linear-gradient(135deg, var(--c1, #333), var(--c2, #555));
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  overflow: hidden;
+}
+
+.insta-post .top-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(180deg, rgba(0,0,0,.3), transparent);
+  z-index: 2;
+}
+
+.insta-post .avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.3);
+  border: 2px solid rgba(255,255,255,.5);
+}
+
+.insta-post .username {
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+}
+
+.insta-post .post-content {
+  text-align: center;
+  padding: 20px;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1.3;
+  text-shadow: 0 2px 12px rgba(0,0,0,.4);
+}
+
+.insta-post .actions {
+  position: absolute;
+  right: 12px;
+  bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  z-index: 2;
+}
+
+.insta-post .action-btn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+
+.insta-post .bottom-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 70px;
+  padding: 14px;
+  font-size: 11px;
+  color: white;
+  background: linear-gradient(0deg, rgba(0,0,0,.5), transparent);
+  z-index: 2;
+}
+
+.insta-post .bottom-info .uname {
+  font-weight: 700;
+  margin-bottom: 4px;
+  font-size: 12px;
+}
+
+.insta-post.p1 { --c1: #ff6b1a; --c2: #ff1f6e; }
+.insta-post.p2 { --c1: #1e293b; --c2: #475569; }
+.insta-post.p3 { --c1: #be185d; --c2: #831843; }
+.insta-post.p4 { --c1: #064e3b; --c2: #047857; }
+.insta-post.p5 { --c1: #4338ca; --c2: #6366f1; }
+
+.insta-bottom-nav {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background: rgba(0,0,0,.95);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 5;
+  border-top: 1px solid rgba(255,255,255,.1);
+}
+
+.insta-bottom-nav .icon {
+  font-size: 20px;
+  color: white;
+}
+
+.insta-finger {
+  position: absolute;
+  right: 60px;
+  font-size: 36px;
+  z-index: 20;
+  pointer-events: none;
+  animation: swipeFinger 2s ease-in-out infinite;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,.5));
+}
+
+@keyframes swipeFinger {
+  0% { top: 380px; opacity: 0; }
+  20% { opacity: 1; }
+  60% { top: 180px; opacity: 1; }
+  80% { opacity: 0; }
+  100% { top: 380px; opacity: 0; }
+}
+
+.scroll-callout {
+  text-align: center;
+  margin-top: 24px;
+  font-size: clamp(18px, 2vw, 22px);
+  color: var(--text-2);
+}
+
+.scroll-callout em {
+  font-size: clamp(20px, 2.4vw, 26px);
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+  .header-inner { padding: 0 16px; }
+  .progress-wrap { display: none; }
+  .brand-divider, .brand-title { display: none; }
+  .slide { padding: 24px 20px; }
+  .pillars { grid-template-columns: 1fr; gap: 12px; }
+  .pillar { padding: 20px; }
+  .pillar-num { font-size: 40px; }
+  .quiz { grid-template-columns: 1fr; gap: 14px; }
+  .comparison { grid-template-columns: 1fr; gap: 14px; }
+  .funnel { grid-template-columns: 1fr; }
+  .key-points { grid-template-columns: 1fr; }
+  .glovv-help { grid-template-columns: 1fr; }
+  .stats { grid-template-columns: 1fr 1fr; }
+  .pattern-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 14px;
+  }
+  .pattern-num { font-size: 22px; }
+  .pyramid-row { font-size: 13px; padding: 10px 16px; flex-direction: column; gap: 4px; }
+  .pyramid-row.top { font-size: 16px; }
+  .insta-phone {
+    width: 220px;
+    height: 440px;
+  }
+  .insta-post { height: 420px; }
+  @keyframes scrollFeed {
+    0%, 5% { transform: translateY(0); }
+    20%, 25% { transform: translateY(-420px); }
+    40%, 45% { transform: translateY(-840px); }
+    60%, 65% { transform: translateY(-1260px); }
+    80%, 85% { transform: translateY(-1680px); }
+    100% { transform: translateY(-2100px); }
+  }
+}
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: rgba(10, 10, 12, .9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid var(--line);
+  padding: 14px 32px;
+  z-index: 100;
+  height: 70px;
+}
+
+.nav-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  height: 100%;
+}
+
+.nav-btn {
+  padding: 10px 20px;
+  border: 1px solid var(--line);
+  background: var(--bg-3);
+  color: var(--text);
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all .2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-btn:hover:not(:disabled) {
+  border-color: var(--pink);
+}
+
+.nav-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.nav-btn.next {
+  background: var(--grad);
+  border-color: transparent;
+  color: white;
+}
+
+.nav-btn.next:hover:not(:disabled) {
+  transform: translateX(2px);
+  box-shadow: 0 8px 24px rgba(255, 47, 156, .3);
+}
+
+.nav-center {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  justify-content: center;
+}
+
+.nav-center .cta-mini {
+  padding: 9px 16px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+  transition: all .2s;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-center .cta-mini.kakao { background: #FEE500; color: #000; }
+.nav-center .cta-mini.glovv { background: var(--grad); color: white; }
+.nav-center .cta-mini.toc {
+  background: var(--bg-3);
+  border: 1px solid var(--line);
+  color: var(--text);
+}
+.nav-center .cta-mini:hover { transform: translateY(-1px); }
+
+@media (max-width: 768px) {
+  .bottom-nav { padding: 10px 14px; height: 64px; }
+  .nav-btn { padding: 8px 14px; font-size: 13px; }
+  .nav-center { gap: 6px; }
+  .nav-center .cta-mini { padding: 7px 12px; font-size: 12px; }
+}
+
+/* ===== Channel cards ===== */
+.channel-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.channel-card {
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.channel-head {
+  padding: 14px 18px;
+  background: var(--bg-3);
+  border-bottom: 1px solid var(--line);
+}
+
+.channel-tag {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+}
+
+.channel-tag.naver { background: #03C75A; }
+.channel-tag.coupang { background: #C5252D; }
+.channel-tag.oliveyoung { background: #1A8917; }
+.channel-tag.musinsa { background: #1a1a1a; border: 1px solid #555; }
+
+.channel-rows {
+  padding: 4px 0;
+}
+
+.ch-row {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 12px;
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--line);
+  align-items: start;
+}
+
+.ch-row:last-child { border-bottom: none; }
+
+.ch-key {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--pink);
+  letter-spacing: 0.02em;
+  padding-top: 1px;
+}
+
+.ch-val {
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.45;
+}
+
+@media (max-width: 768px) {
+  .channel-grid { grid-template-columns: 1fr; gap: 12px; }
+  .ch-row { grid-template-columns: 90px 1fr; padding: 10px 14px; }
+  .ch-key { font-size: 11px; }
+  .ch-val { font-size: 13px; }
+}
+
+/* ===== Algorithm compare (숏폼) ===== */
+.algo-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.algo-side {
+  padding: 24px;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+}
+
+.algo-side.traditional {
+  background: var(--bg-2);
+}
+
+.algo-side.shortform {
+  background: var(--grad-soft);
+  border-color: var(--pink);
+}
+
+.algo-tag {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+}
+
+.algo-side.traditional .algo-tag { background: var(--bg-3); color: var(--text-3); }
+.algo-side.shortform .algo-tag { background: var(--grad); color: white; }
+
+.algo-side h3 {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 12px;
+}
+
+.algo-flow {
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 14px;
+  background: rgba(255,255,255,.04);
+  border-radius: 8px;
+  margin-bottom: 14px;
+  color: var(--text);
+}
+
+.algo-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.algo-list li {
+  font-size: 14px;
+  color: var(--text-2);
+  padding-left: 16px;
+  position: relative;
+  margin: 0;
+}
+
+.algo-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--pink);
+}
+
+@media (max-width: 768px) {
+  .algo-compare { grid-template-columns: 1fr; gap: 12px; }
+  .algo-side { padding: 18px; }
+  .algo-side h3 { font-size: 18px; }
+}
+
+/* ===== ROAS strategy cards ===== */
+.roas-strategy {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.strategy-card {
+  padding: 24px 20px;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  text-align: center;
+}
+
+.strategy-card.highlight {
+  background: var(--grad-soft);
+  border-color: var(--pink);
+}
+
+.strategy-icon {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.strategy-card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+
+.strategy-card p {
+  font-size: 14px;
+  color: var(--text-2);
+  margin: 0;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .roas-strategy { grid-template-columns: 1fr; gap: 10px; }
+}
+
+/* ===== ROAS Calculator ===== */
+.roas-calc {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 18px;
+  margin-top: 20px;
+}
+
+.calc-inputs {
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.calc-row {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.calc-row label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-2);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.calc-row label span {
+  font-size: 11px;
+  color: var(--text-3);
+  font-weight: 500;
+}
+
+.calc-row input {
+  background: var(--bg-3);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 12px;
+  color: var(--text);
+  font-size: 15px;
+  font-family: 'Manrope', 'Pretendard', sans-serif;
+  font-weight: 600;
+  font-feature-settings: 'tnum';
+  outline: none;
+  transition: border-color .2s;
+}
+
+.calc-row input:focus {
+  border-color: var(--pink);
+}
+
+.calc-row input::-webkit-outer-spin-button,
+.calc-row input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.calc-results {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.result-card {
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 18px;
+}
+
+.result-card.bep {
+  background: linear-gradient(135deg, rgba(96, 165, 250, .15), rgba(59, 130, 246, .05));
+  border-color: rgba(96, 165, 250, .35);
+}
+
+.result-card.breakeven {
+  background: var(--grad-soft);
+  border-color: var(--pink);
+}
+
+.result-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--text-2);
+  margin-bottom: 4px;
+}
+
+.result-card.bep .result-label { color: #60a5fa; }
+.result-card.breakeven .result-label { color: var(--pink); }
+
+.result-value {
+  font-family: 'Manrope', sans-serif;
+  font-size: clamp(36px, 4.5vw, 48px);
+  font-weight: 800;
+  line-height: 1;
+  font-feature-settings: 'tnum';
+}
+
+.result-card.bep .result-value { color: #60a5fa; }
+.result-card.breakeven .result-value {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.result-sub {
+  font-size: 12px;
+  color: var(--text-3);
+  margin-top: 6px;
+  line-height: 1.4;
+}
+
+.result-card.meta {
+  padding: 14px 18px;
+}
+
+.result-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  padding: 6px 0;
+  font-feature-settings: 'tnum';
+}
+
+.result-row span:first-child {
+  color: var(--text-3);
+}
+
+.result-row span:last-child {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.result-row.total {
+  border-top: 1px solid var(--line);
+  margin-top: 4px;
+  padding-top: 10px;
+  font-size: 14px;
+}
+
+.result-row.total span:first-child {
+  color: var(--text-2);
+  font-weight: 700;
+}
+
+.result-row.total span:last-child {
+  color: var(--pink);
+  font-weight: 800;
+}
+
+@media (max-width: 900px) {
+  .roas-calc { grid-template-columns: 1fr; gap: 14px; }
+}
+
+/* ===== Copyright Notice ===== */
+.copyright-notice {
+  margin-top: 24px;
+  padding: 18px 22px;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.copyright-icon {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--bg-3);
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Manrope', serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text-3);
+}
+
+.copyright-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-2);
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+}
+
+.copyright-body p {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--text-3);
+  margin: 0 0 4px;
+  max-width: none;
+}
+
+.copyright-body p:last-child { margin-bottom: 0; }
+
+.copyright-body strong {
+  color: var(--text-2);
+  font-weight: 600;
+}
+
+.copyright-body em {
+  color: var(--text-2);
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .copyright-notice { padding: 14px 16px; gap: 12px; }
+  .copyright-icon { width: 30px; height: 30px; font-size: 14px; }
+  .copyright-body p { font-size: 12px; }
+}
+
+/* ===== Bad guideline 2-col layout ===== */
+.bad-guideline-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 24px;
+  margin-top: 16px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .bad-guideline-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="brand">
+      <img src="images/logo.png" alt="Glovv" />
+      <div class="brand-divider"></div>
+      <span class="brand-title">웨비나 · 좋은 콘텐츠를 만드는 법</span>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-text">
+        <span id="sectionName">Intro</span>
+        <span><span id="currentNum">1</span> / <span id="totalNum">1</span></span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- 1. HERO -->
+<section class="slide active" data-name="인트로">
+  <div class="slide-inner">
+    <div class="hero">
+      <div class="hero-meta">
+        <span class="dot"></span>
+        <span>Glovv Webinar</span>
+      </div>
+      <h1>좋은 콘텐츠를<br /><span class="grad">만드는 법</span></h1>
+      <p class="hero-sub">
+        ROAS를 가르는 건 화질도, 속도감도 아닙니다.<br />
+        2,000개 브랜드와 일하며 발견한 콘텐츠의 공식.
+      </p>
+      <p class="speaker">박유진 · Glovv</p>
+    </div>
+  </div>
+</section>
+
+<!-- 2. AGENDA -->
+<section class="slide" data-name="목차">
+  <div class="slide-inner">
+    <div class="section-num">AGENDA</div>
+    <h1>오늘 다룰 <span class="grad">10가지</span></h1>
+    <p style="margin-bottom: 8px;">아래 항목을 클릭하면 해당 섹션으로 바로 이동합니다.</p>
+
+    <div class="agenda">
+      <button class="agenda-item" data-jump="2">
+        <div class="agenda-num">01</div>
+        <div class="agenda-title">좋은 콘텐츠란?</div>
+        <div class="agenda-desc">ROAS를 가르는 핵심 차이</div>
+      </button>
+      <button class="agenda-item" data-jump="7">
+        <div class="agenda-num">02</div>
+        <div class="agenda-title">스크롤을 멈추는 법</div>
+        <div class="agenda-desc">첫 타이틀의 기술</div>
+      </button>
+      <button class="agenda-item" data-jump="9">
+        <div class="agenda-num">03</div>
+        <div class="agenda-title">첫 3초를 붙잡는 법</div>
+        <div class="agenda-desc">공감과 타겟 좁히기</div>
+      </button>
+      <button class="agenda-item" data-jump="18">
+        <div class="agenda-num">04</div>
+        <div class="agenda-title">고객조사</div>
+        <div class="agenda-desc">타겟을 좁히는 방법</div>
+      </button>
+      <button class="agenda-item" data-jump="22">
+        <div class="agenda-num">05</div>
+        <div class="agenda-title">끝까지 보게 하는 법</div>
+        <div class="agenda-desc">1영상 1가치 + 피라미드</div>
+      </button>
+      <button class="agenda-item" data-jump="29">
+        <div class="agenda-num">06</div>
+        <div class="agenda-title">누가 만드는가</div>
+        <div class="agenda-desc">인플루언서 선별의 중요성</div>
+      </button>
+      <button class="agenda-item" data-jump="33">
+        <div class="agenda-num">07</div>
+        <div class="agenda-title">테스팅 방법론</div>
+        <div class="agenda-desc">변수 검증 + 2차 가공 + 파트너십</div>
+      </button>
+      <button class="agenda-item" data-jump="39">
+        <div class="agenda-num">08</div>
+        <div class="agenda-title">메타 광고 운영</div>
+        <div class="agenda-desc">Cold · Warm · Hot</div>
+      </button>
+      <button class="agenda-item" data-jump="42">
+        <div class="agenda-num">09</div>
+        <div class="agenda-title">채널별 전략 + ROAS</div>
+        <div class="agenda-desc">채널 특징 · ROAS 계산기</div>
+      </button>
+      <button class="agenda-item" data-jump="48">
+        <div class="agenda-num">10</div>
+        <div class="agenda-title">오늘의 핵심</div>
+        <div class="agenda-desc">정리 + 글로브 소개</div>
+      </button>
+    </div>
+
+    <div class="copyright-notice">
+      <div class="copyright-icon">©</div>
+      <div class="copyright-body">
+        <div class="copyright-title">영상 저작권 안내</div>
+        <p>본 웨비나에 사용된 모든 영상은 저작권 보호를 위해 <strong>글로브에서 직접 제작한 영상</strong> 및 <strong>해당 영상을 기반으로 한 2차 가공 영상</strong>으로만 구성되어 있습니다.</p>
+        <p>모든 영상은 법적으로 보호되며 외부 활용이 불가합니다. <em>무단 사용 및 상업적 이용 시 민·형사상 책임</em>이 따를 수 있습니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 1 ============ -->
+
+<!-- 3. 질문 -->
+<section class="slide" data-name="좋은 콘텐츠란?">
+  <div class="slide-inner center">
+    <div class="section-num">SECTION 01 · 좋은 콘텐츠란?</div>
+    <h1>좋은 콘텐츠란<br /><span class="grad">무엇일까요?</span></h1>
+    <p class="lead" style="max-width: 700px; margin: 32px auto 0;">
+      ROAS 200%면 좋은 콘텐츠일까요?<br />
+      ROAS 300%면 좋은 콘텐츠일까요?
+    </p>
+  </div>
+</section>
+
+<!-- 4. A vs B 퀴즈 -->
+<section class="slide" data-name="A vs B 퀴즈">
+  <div class="slide-inner">
+    <div class="section-num">SECTION 01</div>
+    <h1>같은 브랜드, 같은 제품인데<br /><span class="grad">결과가 갈렸습니다</span></h1>
+    <p class="lead">하나는 ROAS 100% 미만, 하나는 200% 이상.<br />어떤 영상이 더 효율이 좋았을까요?</p>
+
+    <div class="quiz">
+      <div class="quiz-card a">
+        <div class="label">A</div>
+        <div class="video-embed"><iframe src="https://player.vimeo.com/video/1189006380?title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+        <div class="roas">차분한 톤</div>
+      </div>
+      <div class="quiz-card b">
+        <div class="label">B</div>
+        <div class="video-embed"><iframe src="https://player.vimeo.com/video/1189006357?title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+        <div class="roas">속도감 있는 톤</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. 정답 공개 -->
+<section class="slide" data-name="정답 공개">
+  <div class="slide-inner">
+    <div class="section-num">SECTION 01</div>
+    <h1>정답은 <span class="grad">A.</span></h1>
+    <p class="lead">차이는 속도감이 아니라 <em>첫 3초</em>였습니다.</p>
+
+    <div class="comparison" style="margin-top: 32px;">
+      <div class="comp-side good">
+        <div class="tag">A · ROAS 200%+</div>
+        <h3>처음부터 가치 전달</h3>
+        <p style="margin: 0; font-size: 16px; color: var(--text-2);">"이 제품을 쓰면 OO이 해결됩니다"라고 명확히 언급</p>
+      </div>
+      <div class="comp-side bad">
+        <div class="tag">B · ROAS 100% 미만</div>
+        <h3>로고만 보여줌</h3>
+        <p style="margin: 0; font-size: 16px; color: var(--text-2);">첫 3초간 아무런 가치도 전달하지 않음</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <span class="callout-icon">⏱</span>
+      평균 영상 시청 시간은 <em>채 3초가 안 됩니다.</em><br />
+      그 안에 붙잡지 못하면 사라집니다.
+    </div>
+  </div>
+</section>
+
+<!-- 6. 좋은 콘텐츠 3가지 공통점 -->
+<section class="slide" data-name="좋은 콘텐츠의 3가지 공통점">
+  <div class="slide-inner">
+    <div class="section-num">SECTION 01</div>
+    <h1>좋은 광고의<br /><span class="grad">3가지 공통점</span></h1>
+
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-num">01</div>
+        <h3>멈추게 한다</h3>
+        <p>스크롤을 내리다가 손이 멈춰야 합니다</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">02</div>
+        <h3>붙잡는다</h3>
+        <p>첫 3초 안에 가치를 전달해야 합니다</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">03</div>
+        <h3>설득한다</h3>
+        <p>클릭, 더 나아가 구매하고 싶게 만듭니다</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. 인스타 mockup -->
+<section class="slide" data-name="현실은 이렇게 흘러갑니다">
+  <div class="slide-inner center">
+    <div class="section-num">SECTION 01</div>
+    <h1>현실은 <span class="grad">이렇게</span> 흘러갑니다</h1>
+    <p class="lead" style="margin-top: 16px;">사람들은 1초도 안 되는 사이에 콘텐츠를 넘깁니다.</p>
+
+    <div class="insta-mockup-wrap">
+      <div class="insta-phone">
+        <div class="insta-notch"></div>
+        <div class="insta-screen">
+          <div class="insta-feed">
+            <div class="insta-post p1">
+              <div class="top-bar"><div class="avatar"></div><div class="username">beauty_brand_01</div></div>
+              <div class="post-content">✨ 오늘의 메이크업 ✨</div>
+              <div class="actions"><div class="action-btn">♡</div><div class="action-btn">💬</div><div class="action-btn">↗</div></div>
+              <div class="bottom-info"><div class="uname">beauty_brand_01</div><div>오늘의 데일리 메이크업 룩...</div></div>
+            </div>
+            <div class="insta-post p2">
+              <div class="top-bar"><div class="avatar"></div><div class="username">skin_care_pro</div></div>
+              <div class="post-content">새 제품 출시!</div>
+              <div class="actions"><div class="action-btn">♡</div><div class="action-btn">💬</div><div class="action-btn">↗</div></div>
+              <div class="bottom-info"><div class="uname">skin_care_pro</div><div>드디어 출시되었습니다...</div></div>
+            </div>
+            <div class="insta-post p3">
+              <div class="top-bar"><div class="avatar"></div><div class="username">influencer_jane</div></div>
+              <div class="post-content">Get Ready<br/>with me</div>
+              <div class="actions"><div class="action-btn">♡</div><div class="action-btn">💬</div><div class="action-btn">↗</div></div>
+              <div class="bottom-info"><div class="uname">influencer_jane</div><div>같이 준비해요!</div></div>
+            </div>
+            <div class="insta-post p4">
+              <div class="top-bar"><div class="avatar"></div><div class="username">cosmetic_official</div></div>
+              <div class="post-content">SALE<br/>50% OFF</div>
+              <div class="actions"><div class="action-btn">♡</div><div class="action-btn">💬</div><div class="action-btn">↗</div></div>
+              <div class="bottom-info"><div class="uname">cosmetic_official</div><div>한정 세일 진행중</div></div>
+            </div>
+            <div class="insta-post p5">
+              <div class="top-bar"><div class="avatar"></div><div class="username">daily_review</div></div>
+              <div class="post-content">솔직 후기 🤍</div>
+              <div class="actions"><div class="action-btn">♡</div><div class="action-btn">💬</div><div class="action-btn">↗</div></div>
+              <div class="bottom-info"><div class="uname">daily_review</div><div>정말 솔직하게 써봤어요...</div></div>
+            </div>
+            <div class="insta-post p1">
+              <div class="top-bar"><div class="avatar"></div><div class="username">beauty_brand_01</div></div>
+              <div class="post-content">✨ 오늘의 메이크업 ✨</div>
+              <div class="actions"><div class="action-btn">♡</div><div class="action-btn">💬</div><div class="action-btn">↗</div></div>
+              <div class="bottom-info"><div class="uname">beauty_brand_01</div><div>오늘의 데일리 메이크업 룩...</div></div>
+            </div>
+          </div>
+          <div class="insta-finger">👆</div>
+          <div class="insta-bottom-nav">
+            <span class="icon">🏠</span>
+            <span class="icon">🔍</span>
+            <span class="icon">＋</span>
+            <span class="icon">▶</span>
+            <span class="icon">👤</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="scroll-callout">그래서 우리는 일단 <em>스크롤을 멈추게</em> 만들어야 합니다.</p>
+  </div>
+</section>
+
+<!-- ============ SECTION 2 ============ -->
+
+<!-- 8. 도입 -->
+<section class="slide" data-name="스크롤을 멈추는 법">
+  <div class="slide-inner center">
+    <div class="section-num">SECTION 02 · 스크롤을 멈추는 법</div>
+    <h1>스크롤을<br /><span class="grad">멈추게 하는 법</span></h1>
+    <p class="lead" style="margin-top: 32px;">결국 첫인상은 <em>타이틀</em>에서 결정됩니다.</p>
+  </div>
+</section>
+
+<!-- 9. 타이틀 비교 -->
+<section class="slide" data-name="좋은 타이틀 vs 안 좋은 타이틀">
+  <div class="slide-inner">
+    <div class="section-num">SECTION 02</div>
+    <h1>좋은 타이틀 vs <span class="grad">안 좋은 타이틀</span></h1>
+
+    <div class="comparison">
+      <div class="comp-side good">
+        <div class="tag">GOOD</div>
+        <div class="video-embed"><iframe src="https://player.vimeo.com/video/1189006400?title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+      </div>
+      <div class="comp-side bad">
+        <div class="tag">BAD</div>
+        <div class="video-embed"><iframe src="https://player.vimeo.com/video/1189006381?title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <span class="callout-icon">💡</span>
+      타이틀은 <strong>한눈에 읽혀야 합니다.</strong> 글자가 작거나 배경과 명도 차이가 적으면, 사용자는 그냥 지나갑니다.
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 3 ============ -->
+
+<!-- 10. 도입 -->
+<section class="slide" data-name="첫 3초를 붙잡는 법">
+  <div class="slide-inner center">
+    <div class="section-num">SECTION 03 · 첫 3초를 붙잡는 법</div>
+    <h1>첫 3초를<br />붙잡는 법</h1>
+    <p class="lead" style="margin-top: 32px;">3초를 붙잡는 가장 좋은 방법은 <em>공감</em>입니다.</p>
+  </div>
+</section>
+
+<!-- 11. 공감 3가지 -->
+<section class="slide" data-name="공감을 이끌어내는 3가지">
+  <div class="slide-inner">
+    <div class="section-num">SECTION 03</div>
+    <h1>공감을 이끌어내는<br /><span class="grad">3가지 방식</span></h1>
+
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-num">01</div>
+        <h3>문제 제시</h3>
+        <p>어떤 문제를 겪고 있는지<br />직접 보여주기 / 호기심 유발</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">02</div>
+        <h3>워너비 제시</h3>
+        <p>되고 싶은 모습을<br />먼저 보여주기</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">03</div>
+        <h3>통념 비판</h3>
+        <p>"~인 줄 아셨죠?<br />사실은…"</p>
+      </div>
+    </div>
+
+    <p style="text-align: center; margin-top: 20px; color: var(--text-3); font-size: 15px;">각 방식별 예시 영상을 다음 슬라이드에서 보여드릴게요.</p>
+  </div>
+</section>
+
+<!-- 11-1. 공감 방식 1: 문제 제시 / 호기심 유발 -->
+<section class="slide" data-name="① 문제 제시 · 호기심 유발">
+  <div class="slide-inner">
+    <div class="section-num">SECTION 03 · 공감 방식 ①</div>
+    <h1>문제 제시 · <span class="grad">호기심 유발</span></h1>
+    <p class="lead">시청자가 겪는 문제를 직접 보여주거나, 궁금증을 자극합니다.</p>
+
+    <div class="comparison">
+      <div class="comp-side good">
+        <div class="tag">문제점 공감</div>
+        <div class="video-embed"><iframe src="https://player.vimeo.com/video/1189006335?title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+      </div>
+      <div class="comp-side good">
+        <div class="tag">호기심 유발</div>
+        <div class="video-embed"><iframe src="https://player.vimeo.com/video/1189006336?title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 11-2. 공감 방식 2: 워너비 -->
+<section class="slide" data-name="② 워너비 제시">
+  <div class="slide-inner">
+    <div class="section-num">SECTION 03 · 공감 방식 ②</div>
+    <h1>워너비 <span class="grad">제시</span></h1>
+    <p class="lead">되고 싶은 모습을 먼저 보여주면, 시청자는 "나도 저렇게 되고 싶다"고 느낍니다.</p>
+
+    <div class="comparison">
+      <div class="comp-side good">
+        <div class="tag">B/A (Before/After)</div>
+        <div class="video-embed"><iframe src="https://player.vimeo.com/video/1189006487?title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+      </div>
+      <div class="comp-side good">
+        <div class="tag">연예인 / 워너비</div>
+        <div class="video-embed"><iframe src="https://player.vimeo.com/video/1189006332?title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 11-3. 공감 방식 3: 통념 비판 -->
+<section class="slide" data-name="③ 통념 비판">
+  <div class="slide-inner">
+    <div class="section-num">SECTION 03 · 공감 방식 ③</div>
+    <h1>통념 <span class="grad">비판</span></h1>
+    <p class="lead">"이렇게 하지 마세요", "이것부터 바꿔야 합니다" — 기존의 상식을 뒤집습니다.</p>
+
+    <div class="comparison">
+      <div class="comp-side good">
+        <div class="tag">이렇게 하지 마세요</div>
+        <div class="video-embed"><iframe src="https://player.vimeo.com/video/1189006423?title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+      </div>
+      <div class="comp-side good">
+        <div class="tag">이것부터 바꿔야돼</div>
+        <div class="video-embed"><iframe src="https://player.vimeo.com/video/1189006403?title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 12. 주의 1 -->
+<section class="slide" data-name="주의 1: 시각이 메인">
+  <div class="slide-inner">
+    <div class="section-num">SECTION 03 · 주의할 점</div>
+    <h1>시각이 메인,<br /><span class="grad">음성은 보조</span></h1>
+
+    <div class="card gradient-border center" style="padding: 48px 32px;">
+      <div class="big-num" style="font-size: clamp(80px, 14vw, 160px);">70%</div>
+      <h3 style="margin-top: 16px; font-size: clamp(22px, 2.4vw, 28px);">인스타그램 유저는 <em>소리를 끈 상태</em>로 봅니다</h3>
+      <p style="margin-top: 12px; max-width: 600px; margin-left: auto; margin-right: auto;">
+        자막과 비주얼만으로 메시지가 전달돼야 합니다.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 13. 주의 2 -->
+<section class="slide" data-name="주의 2: 무관한 후킹 금지">
+  <div class="slide-inner">
+    <div class="section-num">SECTION 03 · 주의할 점</div>
+    <h1>제품과 무관한 후킹은<br /><span class="grad">금물</span></h1>
+
+    <p class="lead">3초 잡으려고 자극적이지만 제품과 상관없는 내용을 넣으면…<br /><em>결국 뒷부분에서 다 이탈</em>합니다.</p>
+
+    <div class="comparison">
+      <div class="comp-side bad">
+        <div class="tag">BAD</div>
+        <div class="video-embed"><iframe src="https://player.vimeo.com/video/1189006402?title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+      </div>
+      <div class="comp-side" style="border-left: 4px solid var(--line); display: flex; flex-direction: column; justify-content: center;">
+        <h3>왜 안 될까요?</h3>
+        <p style="margin: 0;">첫 3초는 잡았지만, 제품 얘기로 넘어가는 순간 시청자는 <em>"속았다"</em>고 느낍니다. 결국 영상은 본 것 같지만 구매는 일어나지 않습니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 14. 비법: 타겟 -->
+<section class="slide" data-name="비법: 타겟을 좁혀라">
+  <div class="slide-inner center">
+    <div class="section-num">SECTION 03</div>
+    <h1>그럼 첫 3초를 잘 잡는<br /><span class="grad">비법은?</span></h1>
+
+    <div class="card gradient-border" style="padding: 56px 32px; margin-top: 32px;">
+      <div class="big-num">타겟</div>
+      <h3 style="margin-top: 16px; font-size: clamp(24px, 3vw, 36px);">을 좁히는 것</h3>
+    </div>
+  </div>
+</section>
+
+<!-- 15. 타겟 공식 -->
+<section class="slide" data-name="타겟 좁히기 공식">
+  <div class="slide-inner">
+    <div class="section-num">SECTION 03</div>
+    <h1>타겟을 좁히는 <span class="grad">공식</span></h1>
+
+    <div class="card" style="padding: 36px;">
+      <div style="display: flex; flex-direction: column; gap: 18px;">
+        <div style="display: flex; gap: 18px; align-items: flex-start;">
+          <div style="flex-shrink: 0; width: 52px; height: 52px; border-radius: 50%; background: var(--grad); display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 800; color: white; font-family: 'Manrope';">1</div>
+          <div>
+            <h3 style="margin: 0;">어떤 문제를 겪고 있고</h3>
+            <p style="margin: 4px 0 0; font-size: 15px;">예) 늦은 밤 야식 후 다음 날 피부에 트러블이 올라오는 사람</p>
+          </div>
+        </div>
+        <div style="display: flex; gap: 18px; align-items: flex-start;">
+          <div style="flex-shrink: 0; width: 52px; height: 52px; border-radius: 50%; background: var(--grad); display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 800; color: white; font-family: 'Manrope';">2</div>
+          <div>
+            <h3 style="margin: 0;">어떤 대안을 사용하고 있는데</h3>
+            <p style="margin: 4px 0 0; font-size: 15px;">예) 흔한 토너패드를 매일 쓰지만 효과가 제한적</p>
+          </div>
+        </div>
+        <div style="display: flex; gap: 18px; align-items: flex-start;">
+          <div style="flex-shrink: 0; width: 52px; height: 52px; border-radius: 50%; background: var(--grad); display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 800; color: white; font-family: 'Manrope';">3</div>
+          <div>
+            <h3 style="margin: 0;">우리 제품을 쓰면 어떤 이득을 얻는지</h3>
+            <p style="margin: 4px 0 0; font-size: 15px;">예) 트러블 진정 + 유수분 밸런스까지 한 번에</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      타겟이 좁을수록 <em>첫 타이틀부터 3초 구성까지</em>, 그들의 공감을 이끌어내기가 훨씬 쉽습니다.
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 4 ============ -->
+
+<!-- 16. 도입 -->
+<section class="slide" data-name="고객조사">
+  <div class="slide-inner center">
+    <div class="section-num">SECTION 04 · 고객조사</div>
+    <h1>"좁혀라"는 알겠는데,<br /><span class="grad">어떻게?</span></h1>
+    <p class="lead" style="margin-top: 32px;">답은 <em>고객조사</em>입니다.</p>
+  </div>
+</section>
+
+<!-- 17. 충격 사실 -->
+<section class="slide" data-name="2,000개 브랜드 인사이트">
+  <div class="slide-inner">
+    <div class="section-num">SECTION 04</div>
+    <h1>2,000개 브랜드를 만나며<br /><span class="grad">알게 된 것</span></h1>
+
+    <div class="card gradient-border" style="padding: 40px;">
+      <div class="card-label">충격적인 사실</div>
+      <h3 style="font-size: clamp(22px, 2.6vw, 30px); margin-top: 8px;">
+        고객 조사를 <em>해본 마케터가 거의 없습니다.</em>
+      </h3>
+      <p style="font-size: clamp(18px, 1.8vw, 22px); margin-top: 16px;">
+        그런데 <strong>잘하는 브랜드일수록</strong><br />
+        고객조사를 주기적으로 하는 비율이 압도적으로 높습니다.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 18. 고객조사 질문 -->
+<section class="slide" data-name="이런 질문을 던지세요">
+  <div class="slide-inner">
+    <div class="section-num">SECTION 04</div>
+    <h1>이런 질문들을 <span class="grad">던지세요</span></h1>
+
+    <div style="display: grid; gap: 14px; margin-top: 24px;">
+      <div class="card" style="margin: 0;">
+        <h3 style="margin: 0;">🛒 고객이 우리 제품을…</h3>
+        <p style="margin: 8px 0 0; font-size: 16px;"><strong>어떤 상황</strong>에서, <strong>어떤 이유</strong>로, <strong>어떤 채널</strong>에서 구매했는가</p>
+      </div>
+      <div class="card" style="margin: 0;">
+        <h3 style="margin: 0;">⚖️ 구매를 고민한…</h3>
+        <p style="margin: 8px 0 0; font-size: 16px;"><strong>경쟁 제품</strong>은 무엇이고, 왜 우리 제품을 선택했는가</p>
+      </div>
+      <div class="card" style="margin: 0;">
+        <h3 style="margin: 0;">🔁 경쟁 제품을…</h3>
+        <p style="margin: 8px 0 0; font-size: 16px;"><strong>사본 경험</strong>은 얼마나 많은가</p>
+      </div>
+    </div>
+
+    <div class="callout">이 답을 알면 <em>소구 포인트가 명확해집니다.</em></div>
+  </div>
+</section>
+
+<!-- 19. 유진 사례 -->
+<section class="slide" data-name="제 사례를 보여드릴게요">
+  <div class="slide-inner">
+    <div class="section-num">SECTION 04</div>
+    <h1>제 사례를 <span class="grad">보여드릴게요</span></h1>
+
+    <div class="comparison">
+      <div class="comp-side bad">
+        <div class="tag">처음 영상</div>
+        <div class="video-embed"><iframe src="https://player.vimeo.com/video/1189006354?title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+        <p style="margin-top: 14px; font-size: 14px;">고객 획득 비용 <em>40만원대</em><br />2개월 유지에 그침</p>
+      </div>
+      <div class="comp-side good">
+        <div class="tag">나중 영상</div>
+        <div class="video-embed"><iframe src="https://player.vimeo.com/video/1189006353?title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+        <p style="margin-top: 14px; font-size: 14px;">고객 획득 비용 <em>20만원대</em><br />6개월 이상 유지</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>차이는 화질이 아니었습니다.</strong> 우리를 이용하는 브랜드가 <em>왜 글로브를 쓰는지, 무엇을 궁금해하는지, 어떤 점을 고민하는지</em> 알고 있었기 때문입니다.
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 5 ============ -->
+
+<!-- 20. 도입 -->
+<section class="slide" data-name="끝까지 보게 하는 법">
+  <div class="slide-inner center">
+    <div class="section-num">SECTION 05 · 끝까지 보게 하는 법</div>
+    <h1>끝까지 보게<br />만드는 법</h1>
+    <p class="lead" style="margin-top: 32px;">비법은 단 하나.<br /><em>1개의 영상에 1개의 가치만.</em></p>
+  </div>
+</section>
+
+<!-- 21. 1영상 1가치 -->
+<section class="slide" data-name="1영상 1가치">
+  <div class="slide-inner">
+    <div class="section-num">SECTION 05</div>
+    <h1>1영상 <span class="grad">1가치 전달</span></h1>
+    <p class="lead">첫 3초에 "여드름을 해결할 수 있다"고 했는데,<br />갑자기 모공도 좁아지고, 피부도 탄력적이게 변한다고 하면…</p>
+
+    <div class="comparison">
+      <div class="comp-side good">
+        <div class="tag">GOOD</div>
+        <h3>여드름에만 포커싱</h3>
+        <div class="video-embed"><iframe src="https://player.vimeo.com/video/1189006451?title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+      </div>
+      <div class="comp-side bad">
+        <div class="tag">BAD</div>
+        <h3>여드름·모공·탄력 다 됨</h3>
+        <div class="video-embed"><iframe src="https://player.vimeo.com/video/1189006450?title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 22. 피라미드 원칙 -->
+<section class="slide" data-name="맥킨지 피라미드 원칙">
+  <div class="slide-inner">
+    <div class="section-num">SECTION 05</div>
+    <h1>맥킨지의 <span class="grad">피라미드 원칙</span></h1>
+    <p class="lead">세계적인 컨설팅펌 맥킨지가 강조한 <em>설득의 구조</em>입니다.</p>
+
+    <div class="pyramid">
+      <div class="pyramid-row top">결론 1개</div>
+      <div class="pyramid-row">
+        <span class="item">지지 논거 1</span>
+        <span class="item">지지 논거 2</span>
+        <span class="item">지지 논거 3</span>
+      </div>
+      <div class="pyramid-row" style="font-size: 14px; color: var(--text-3);">각 논거를 뒷받침하는 근거</div>
+    </div>
+
+    <p style="margin-top: 24px; text-align: center;">
+      소비자가 느낄 <strong>핵심 가치를 처음에 먼저</strong> 언급하고,<br />이후 핵심 USP를 나열합니다.
+    </p>
+  </div>
+</section>
+
+<!-- 23. 고ROAS 영상 -->
+<section class="slide" data-name="고ROAS 영상의 구조">
+  <div class="slide-inner">
+    <div class="section-num">SECTION 05</div>
+    <h1>실제 <span class="grad">고ROAS 영상의</span> 구조</h1>
+
+    <div class="card gradient-border">
+      <div class="video-placeholder wide" style="margin-bottom: 20px;">
+        <span class="label">고ROAS 영상 (블랙헤드 제거)</span>
+      </div>
+      <div style="display: grid; gap: 14px;">
+        <div style="display: flex; gap: 14px; align-items: flex-start;">
+          <span style="background: var(--grad); color: white; padding: 6px 14px; border-radius: 8px; font-size: 13px; font-weight: 800; white-space: nowrap;">첫 3초</span>
+          <p style="margin: 0;">해결할 가치 언급(블랙헤드 제거) + 통념 비판</p>
+        </div>
+        <div style="display: flex; gap: 14px; align-items: flex-start;">
+          <span style="background: var(--bg-3); padding: 6px 14px; border-radius: 8px; font-size: 13px; font-weight: 800; white-space: nowrap;">이후</span>
+          <p style="margin: 0;">왜 기존엔 해결되지 않았는지 <em>논리적으로 설득</em></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 24. 5가지 패턴 -->
+<section class="slide" data-name="5가지 패턴">
+  <div class="slide-inner">
+    <div class="section-num">SECTION 05</div>
+    <h1>1가치를 <span class="grad">5가지 패턴</span>으로</h1>
+    <p class="lead">상황에 맞는 패턴을 골라 구성하세요.</p>
+
+    <div class="patterns">
+      <div class="pattern-row">
+        <div class="pattern-num">01</div>
+        <div class="pattern-flow">
+          <span class="step">문제</span><span class="arrow">→</span>
+          <span class="step">공감</span><span class="arrow">→</span>
+          <span class="step">해결</span><span class="arrow">→</span>
+          <span class="step cta">CTA</span>
+        </div>
+        <div class="pattern-when">가장 보편적. 어디서 시작할지 모르면 이 패턴부터.</div>
+      </div>
+      <div class="pattern-row">
+        <div class="pattern-num">02</div>
+        <div class="pattern-flow">
+          <span class="step">결과 먼저</span><span class="arrow">→</span>
+          <span class="step">방법 궁금증</span><span class="arrow">→</span>
+          <span class="step cta">CTA</span>
+        </div>
+        <div class="pattern-when">Before/After 명확한 제품 (다이어트·피부·인테리어)</div>
+      </div>
+      <div class="pattern-row">
+        <div class="pattern-num">03</div>
+        <div class="pattern-flow">
+          <span class="step">사회적 증거</span><span class="arrow">→</span>
+          <span class="step">혜택</span><span class="arrow">→</span>
+          <span class="step cta">CTA</span>
+        </div>
+        <div class="pattern-when">새 브랜드·처음 보는 제품. 신뢰 문제 해결</div>
+      </div>
+      <div class="pattern-row">
+        <div class="pattern-num">04</div>
+        <div class="pattern-flow">
+          <span class="step">긴급성</span><span class="arrow">→</span>
+          <span class="step">혜택</span><span class="arrow">→</span>
+          <span class="step cta">CTA</span>
+        </div>
+        <div class="pattern-when">FOMO 활용. 핵심: 진짜 한정이어야 함</div>
+      </div>
+      <div class="pattern-row">
+        <div class="pattern-num">05</div>
+        <div class="pattern-flow">
+          <span class="step">질문</span><span class="arrow">→</span>
+          <span class="step">답변 약속</span><span class="arrow">→</span>
+          <span class="step cta">CTA</span>
+        </div>
+        <div class="pattern-when">뇌가 자동으로 답을 떠올림. B2B·교육에 강력</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 24-1. 너무 많은 내용 담은 가이드라인 (BAD 예시) -->
+<section class="slide" data-name="흔한 가이드라인의 함정">
+  <div class="slide-inner">
+    <div class="section-num">SECTION 05 · 가이드라인</div>
+    <h1>흔한 가이드라인의 <span class="grad">함정</span></h1>
+    <p class="lead">처음 가이드라인을 만들면, 보통 <em>"빠뜨릴까 봐"</em> 모든 걸 다 적게 됩니다.</p>
+
+    <div class="bad-guideline-grid">
+      <div class="img-showcase" style="margin: 0; max-height: 56vh;">
+        <img src="images/guideline-bad.png" alt="너무 많은 내용을 담은 가이드라인" style="max-height: 50vh;" />
+        <p class="img-caption">실제 한 브랜드의 가이드라인 — 한 영상에 담기엔 너무 많습니다</p>
+      </div>
+      <div>
+        <h3 style="margin-bottom: 14px;">왜 안 될까요?</h3>
+        <ul style="font-size: 16px; line-height: 1.65;">
+          <li>인플루언서가 <strong>핵심을 못 잡습니다</strong></li>
+          <li>모든 걸 다 넣으려다 <em>1영상 1가치</em>가 깨집니다</li>
+          <li>읽다 지쳐서 <strong>제작 의지가 떨어집니다</strong></li>
+          <li>결국 ROAS는 <em>예측 불가능</em>해집니다</li>
+        </ul>
+        <div class="callout" style="margin-top: 16px; font-size: 15px;">
+          <span class="callout-icon">⚠️</span>
+          가이드라인이 길수록 좋은 게 아닙니다. <em>핵심만 명확히 짚는 양식</em>이 훨씬 효율적입니다.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 25. 가이드라인 -->
+<section class="slide" data-name="글로브 가이드라인 표준화">
+  <div class="slide-inner">
+    <div class="section-num">SECTION 05 · 가이드라인</div>
+    <h1>그래서 글로브는<br /><span class="grad">이렇게 표준화했습니다</span></h1>
+
+    <div class="img-showcase">
+      <img src="images/guideline.png" alt="글로브 가이드라인" />
+      <p class="img-caption">글로브의 새 가이드라인 양식 — 내일 업데이트 예정</p>
+    </div>
+
+    <div class="callout">
+      <span class="callout-icon">📋</span>
+      <strong>국내 TOP 30개 브랜드 인터뷰</strong>를 거쳐, 인플루언서에게 <em>전달하기 편한 양식</em>으로 업데이트했습니다.
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 6 ============ -->
+
+<!-- 26. 도입 -->
+<section class="slide" data-name="콘텐츠보다 더 중요한 것">
+  <div class="slide-inner center">
+    <div class="section-num">SECTION 06 · 누가 만드는가</div>
+    <h1>콘텐츠보다 더 중요한 것:<br /><span class="grad">누가 만드는가</span></h1>
+    <p class="lead" style="margin-top: 32px;">화질·편집도 중요하지만, 그보다 더 중요한 게 있습니다.</p>
+  </div>
+</section>
+
+<!-- 27. 의도에 맞는 사람 -->
+<section class="slide" data-name="의도에 맞게 만들 수 있는 사람">
+  <div class="slide-inner">
+    <div class="section-num">SECTION 06</div>
+    <h1>핵심은 <span class="grad">선별</span>입니다</h1>
+
+    <div class="card gradient-border" style="padding: 40px;">
+      <h3 style="margin: 0; font-size: clamp(22px, 2.6vw, 30px);">의도에 맞게 만들 수 있는<br />인플루언서를 선별하는 것</h3>
+      <p style="font-size: clamp(17px, 1.7vw, 20px); margin-top: 16px;">
+        더 나아가, 전달하는 <em>메시지와 인플루언서의 이미지가 일치</em>할 때<br />
+        효율이 극대화됩니다.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 28. 대표vs유진 -->
+<section class="slide" data-name="같은 제품, 다른 인플루언서">
+  <div class="slide-inner">
+    <div class="section-num">SECTION 06</div>
+    <h1>같은 제품·같은 가이드라인,<br /><span class="grad">다른 ROAS</span></h1>
+
+    <div class="comparison">
+      <div class="comp-side good">
+        <div class="tag">ROAS 좋은 영상</div>
+        <div class="video-embed"><iframe src="https://player.vimeo.com/video/1189006429?title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+      </div>
+      <div class="comp-side bad">
+        <div class="tag">ROAS 나쁜 영상</div>
+        <div class="video-embed"><iframe src="https://player.vimeo.com/video/1189006445?title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+      </div>
+    </div>
+
+    <div class="callout">
+      두 영상은 <strong>같은 제품, 같은 가이드라인</strong>으로 만들어졌습니다. 그런데 <em>누가 말하느냐</em>에 따라 ROAS가 갈렸습니다.
+      <strong>메시지와 인플루언서 이미지의 일치</strong>가 그만큼 중요합니다.
+    </div>
+  </div>
+</section>
+
+<!-- 29. 글로브 풀 -->
+<section class="slide" data-name="글로브 인플루언서 풀">
+  <div class="slide-inner">
+    <div class="section-num">SECTION 06</div>
+    <h1>글로브는 이런 인플루언서만<br /><span class="grad">까다롭게 모았습니다</span></h1>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="num">350</div>
+        <div class="label">추천 인플루언서 (명)</div>
+      </div>
+      <div class="stat">
+        <div class="num">700</div>
+        <div class="label">일반 인플루언서 (명)</div>
+      </div>
+      <div class="stat">
+        <div class="num">15:1</div>
+        <div class="label">인플루언서 입점 경쟁률</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      까다롭게 선별했기 때문에, 의도를 전달하면 <em>그 의도대로 영상을 만들어냅니다.</em>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 7 ============ -->
+
+<!-- 30. 도입 -->
+<section class="slide" data-name="테스팅 방법론">
+  <div class="slide-inner center">
+    <div class="section-num">SECTION 07 · 테스팅 방법론</div>
+    <h1>좋은 콘텐츠를 가르는<br /><span class="grad">테스팅 방법</span></h1>
+    <p class="lead" style="margin-top: 32px;">변수 없이 결과만 보면,<br /><em>왜 잘됐는지 알 수 없습니다.</em></p>
+  </div>
+</section>
+
+<!-- 31. 변수 순서 -->
+<section class="slide" data-name="큰 변수 → 작은 변수">
+  <div class="slide-inner">
+    <div class="section-num">SECTION 07</div>
+    <h1>큰 변수부터,<br /><span class="grad">작은 변수로</span></h1>
+
+    <div class="test-order">
+      <div class="step">
+        타겟 / 소구점
+        <span class="small">BIG VARIABLE</span>
+      </div>
+      <span class="arrow">›</span>
+      <div class="step">
+        근거
+        <span class="small">MEDIUM</span>
+      </div>
+      <span class="arrow">›</span>
+      <div class="step">
+        화자
+        <span class="small">SMALL VARIABLE</span>
+      </div>
+    </div>
+
+    <p style="text-align: center; margin-top: 32px;">
+      효과가 좋은 영상을 <em>최대한 복제</em>하면서,<br />
+      타겟·소구점 → 근거 → 화자 순으로 A/B 테스팅하세요.
+    </p>
+  </div>
+</section>
+
+<!-- 32. 예산 -->
+<section class="slide" data-name="예산 가이드">
+  <div class="slide-inner">
+    <div class="section-num">SECTION 07</div>
+    <h1>예산은 <span class="grad">이렇게</span></h1>
+
+    <div class="card" style="padding: 40px;">
+      <div class="formula">
+        <div class="formula-item">
+          <div class="num">5</div>
+          <p>광고 소재 수</p>
+        </div>
+        <span class="formula-op">×</span>
+        <div class="formula-item">
+          <div class="num">10만</div>
+          <p>하루 예산 (원)</p>
+        </div>
+        <span class="formula-op">×</span>
+        <div class="formula-item">
+          <div class="num">3~5</div>
+          <p>일</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      효과 좋은 영상만 남기고 <em>증액</em>하거나,<br />
+      효과 좋은 영상끼리 <em>별도 캠페인</em>으로 분리해 예산을 할당하세요.
+    </div>
+  </div>
+</section>
+
+<!-- 32-1. 2차 가공으로 양산 -->
+<section class="slide" data-name="2차 가공으로 양산">
+  <div class="slide-inner">
+    <div class="section-num">SECTION 07</div>
+    <h1>잘된 영상은 <span class="grad">2차 가공</span>으로 양산하세요</h1>
+    <p class="lead">처음부터 새 영상을 만드는 것보다, <em>이미 효과가 입증된 영상</em>을 변주하는 것이 훨씬 효율적입니다.</p>
+
+    <div class="card" style="padding: 32px;">
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+        <div style="text-align: center; padding: 22px 16px; background: var(--bg-3); border-radius: 12px;">
+          <div style="font-size: 32px; margin-bottom: 8px;">✂️</div>
+          <h3 style="font-size: 16px; margin: 0 0 6px;">컷 편집 변경</h3>
+          <p style="margin: 0; font-size: 13px; color: var(--text-3);">길이·순서·자막 톤만 바꿔도 새 영상</p>
+        </div>
+        <div style="text-align: center; padding: 22px 16px; background: var(--bg-3); border-radius: 12px;">
+          <div style="font-size: 32px; margin-bottom: 8px;">🎬</div>
+          <h3 style="font-size: 16px; margin: 0 0 6px;">훅·CTA 교체</h3>
+          <p style="margin: 0; font-size: 13px; color: var(--text-3);">앞 3초와 마지막만 다르게</p>
+        </div>
+        <div style="text-align: center; padding: 22px 16px; background: var(--bg-3); border-radius: 12px;">
+          <div style="font-size: 32px; margin-bottom: 8px;">🎙️</div>
+          <h3 style="font-size: 16px; margin: 0 0 6px;">소구점 변형</h3>
+          <p style="margin: 0; font-size: 13px; color: var(--text-3);">동일 소재, 다른 각도로 재포지셔닝</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <span class="callout-icon">💡</span>
+      <strong>2차 가공을 많이 해서 테스팅</strong>하세요. 변수를 좁게 잡고 돌릴수록, <em>무엇이 효율을 만든 건지</em> 명확해집니다.
+    </div>
+  </div>
+</section>
+
+<!-- 32-1-2. 2차 가공 예시 영상 -->
+<section class="slide" data-name="2차 가공 예시">
+  <div class="slide-inner">
+    <div class="section-num">SECTION 07</div>
+    <h1>2차 가공 <span class="grad">예시</span></h1>
+    <p class="lead">같은 메시지·같은 인플루언서, <em>다른 변형</em>으로 만든 영상들입니다.</p>
+
+    <div class="comparison">
+      <div class="comp-side good">
+        <div class="tag">예시 1</div>
+        <div class="video-embed"><iframe src="https://player.vimeo.com/video/1189008582?title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+      </div>
+      <div class="comp-side good">
+        <div class="tag">예시 2</div>
+        <div class="video-embed"><iframe src="https://player.vimeo.com/video/1189008583?title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 32-2. 파트너십 광고로 대량 제작 -->
+<section class="slide" data-name="파트너십 광고로 효율 극대화">
+  <div class="slide-inner">
+    <div class="section-num">SECTION 07</div>
+    <h1>감이 잡혔다면<br /><span class="grad">파트너십 광고로</span> 대량 제작</h1>
+    <p class="lead">"이런 구조가 잘 먹힌다"는 감이 생겼다면,<br />이제 <em>스케일업할 차례</em>입니다.</p>
+
+    <div class="comparison">
+      <div class="comp-side bad">
+        <div class="tag">테스팅 단계</div>
+        <h3 style="margin: 0 0 10px;">소수 영상으로 검증</h3>
+        <p style="margin: 0; font-size: 15px;">5개 소재 × 3~5일.<br />타겟·소구점·근거·화자를 하나씩 바꾸며 <em>승자 공식</em>을 발견.</p>
+      </div>
+      <div class="comp-side good">
+        <div class="tag">스케일 단계</div>
+        <h3 style="margin: 0 0 10px;">파트너십 광고로 대량 제작</h3>
+        <p style="margin: 0; font-size: 15px;">검증된 공식을 <em>여러 인플루언서</em>에게 적용.<br />같은 메시지, 다른 화자로 폭넓게 도달.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <span class="callout-icon">🚀</span>
+      파트너십 광고는 <strong>인플루언서의 신뢰 기반 + 광고 도달력</strong>을 동시에 가져갑니다.<br />
+      검증된 구조를 <em>여러 화자로 대량 제작</em>하면 효율이 극대화됩니다.
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 8 ============ -->
+
+<!-- 33. 도입 -->
+<section class="slide" data-name="메타 광고 운영">
+  <div class="slide-inner center">
+    <div class="section-num">SECTION 08 · 메타 광고 운영</div>
+    <h1>메타 광고<br /><span class="grad">운영 팁</span></h1>
+    <p class="lead" style="margin-top: 32px;">타겟을 <em>3가지 온도</em>로 나눠야 합니다.</p>
+  </div>
+</section>
+
+<!-- 34. CWH -->
+<section class="slide" data-name="Cold · Warm · Hot">
+  <div class="slide-inner">
+    <div class="section-num">SECTION 08</div>
+    <h1>Cold · Warm · <span class="grad">Hot</span></h1>
+
+    <div class="funnel">
+      <div class="funnel-step cold">
+        <div class="name">COLD</div>
+        <div class="ratio">7</div>
+        <div class="desc">우리 브랜드를 잘 모르는 집단</div>
+        <div class="strategy">
+          <strong style="color: #60a5fa;">전략:</strong> 호기심 유발<br />
+          <strong style="color: #60a5fa;">소재:</strong> 영상 광고
+        </div>
+      </div>
+      <div class="funnel-step warm">
+        <div class="name">WARM</div>
+        <div class="ratio">2</div>
+        <div class="desc">제품 페이지를 본 적 있는 집단</div>
+        <div class="strategy">
+          <strong style="color: #ff9f43;">전략:</strong> 논리적 설득 / 할인<br />
+          <strong style="color: #ff9f43;">소재:</strong> 영상 광고
+        </div>
+      </div>
+      <div class="funnel-step hot">
+        <div class="name">HOT</div>
+        <div class="ratio">1</div>
+        <div class="desc">장바구니에 담았으나 구매 안 함</div>
+        <div class="strategy">
+          <strong style="color: #ff2f9c;">전략:</strong> 즉시 구매 혜택<br />
+          <strong style="color: #ff2f9c;">소재:</strong> 이미지로도 충분
+        </div>
+      </div>
+    </div>
+
+    <p style="text-align: center; margin-top: 16px; color: var(--text-3); font-size: 15px;">권장 비율 · 7 : 2 : 1 (세부 상황에 따라 조정)</p>
+  </div>
+</section>
+
+<!-- 35. 빈도 -->
+<section class="slide" data-name="빈도 관리">
+  <div class="slide-inner">
+    <div class="section-num">SECTION 08</div>
+    <h1>빈도(Frequency) <span class="grad">관리</span></h1>
+
+    <div class="card" style="padding: 32px;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        <div style="text-align: center; padding: 24px; background: var(--bg-3); border-radius: 12px;">
+          <div style="font-family: 'Manrope', sans-serif; font-size: clamp(56px, 8vw, 80px); font-weight: 800; color: #60a5fa; line-height: 1;">3</div>
+          <p style="margin-top: 8px; font-size: 16px;">Cold 빈도 한계</p>
+        </div>
+        <div style="text-align: center; padding: 24px; background: var(--bg-3); border-radius: 12px;">
+          <div style="font-family: 'Manrope', sans-serif; font-size: clamp(56px, 8vw, 80px); font-weight: 800; color: #ff9f43; line-height: 1;">5</div>
+          <p style="margin-top: 8px; font-size: 16px;">Warm 빈도 한계</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      한 명이 같은 소재를 3~5번 봤다는 건 감각적으로도 <em>충분히 피로한 시점.</em><br />
+      이때 소재를 교체해주세요. <strong>단, CPA가 유지되면 굳이 끌 필요는 없습니다.</strong>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 9: 채널별 전략 + ROAS ============ -->
+
+<!-- 36-1. 도입 -->
+<section class="slide" data-name="채널별 전략과 ROAS">
+  <div class="slide-inner center">
+    <div class="section-num">SECTION 09 · 채널별 전략과 ROAS</div>
+    <h1>채널마다 <span class="grad">성격이 다릅니다</span></h1>
+    <p class="lead" style="margin-top: 32px;">같은 ROAS 200%여도, <em>채널 따라 좋은 숫자일 수도 나쁜 숫자일 수도</em> 있습니다.</p>
+  </div>
+</section>
+
+<!-- 36-2. 오픈마켓 -->
+<section class="slide" data-name="오픈마켓 (네이버·쿠팡)">
+  <div class="slide-inner">
+    <div class="section-num">SECTION 09 · 채널 특징</div>
+    <h1>오픈마켓 <span class="grad">[네이버 · 쿠팡]</span></h1>
+
+    <div class="channel-grid">
+      <div class="channel-card">
+        <div class="channel-head">
+          <span class="channel-tag naver">1-1 네이버 쇼핑</span>
+        </div>
+        <div class="channel-rows">
+          <div class="ch-row"><span class="ch-key">주요 이용층</span><span class="ch-val">20~40대 중심</span></div>
+          <div class="ch-row"><span class="ch-key">구매 판단 기준</span><span class="ch-val">가격 비교 · 최저가 탐색</span></div>
+          <div class="ch-row"><span class="ch-key">구매 전 정보</span><span class="ch-val">검색 결과 · 리뷰 · 블로그 등 외부 정보 연계</span></div>
+          <div class="ch-row"><span class="ch-key">구매 형태</span><span class="ch-val">브랜드 공식몰 · 스마트스토어 등 신뢰 기반</span></div>
+        </div>
+      </div>
+
+      <div class="channel-card">
+        <div class="channel-head">
+          <span class="channel-tag coupang">1-2 쿠팡</span>
+        </div>
+        <div class="channel-rows">
+          <div class="ch-row"><span class="ch-key">주요 이용층</span><span class="ch-val">전 연령대 고르게</span></div>
+          <div class="ch-row"><span class="ch-key">구매 판단 기준</span><span class="ch-val">빠른 배송 · 구매 편의성</span></div>
+          <div class="ch-row"><span class="ch-key">구매 전 정보</span><span class="ch-val">플랫폼 내 리뷰 · 평점 중심</span></div>
+          <div class="ch-row"><span class="ch-key">구매 형태</span><span class="ch-val">단품 · 대용량 · 묶음 상품 비중 높음</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top: 16px;">
+      <span class="callout-icon">🔍</span>
+      <strong>오픈마켓은 "찾으러 오는" 곳.</strong> 가격·후기·랭킹이 결정타. <em>광고는 검색 유입을 만드는 역할</em>.
+    </div>
+  </div>
+</section>
+
+<!-- 36-3. 버티컬 커머스 -->
+<section class="slide" data-name="버티컬 커머스 (올영·무신사뷰티)">
+  <div class="slide-inner">
+    <div class="section-num">SECTION 09 · 채널 특징</div>
+    <h1>버티컬 커머스 <span class="grad">[올영 · 무신사뷰티]</span></h1>
+
+    <div class="channel-grid">
+      <div class="channel-card">
+        <div class="channel-head">
+          <span class="channel-tag oliveyoung">2-1 올리브영</span>
+        </div>
+        <div class="channel-rows">
+          <div class="ch-row"><span class="ch-key">주요 이용층</span><span class="ch-val">20~30대 여성 중심</span></div>
+          <div class="ch-row"><span class="ch-key">구매 판단 기준</span><span class="ch-val">트렌드 제품 · 추천 콘텐츠</span></div>
+          <div class="ch-row"><span class="ch-key">구매 전 정보</span><span class="ch-val">플랫폼 내 추천 · 콘텐츠 · 후기</span></div>
+          <div class="ch-row"><span class="ch-key">구매 기준</span><span class="ch-val">제품 효능 · 성분 정보, 프로모션 · 세일 활용</span></div>
+        </div>
+      </div>
+
+      <div class="channel-card">
+        <div class="channel-head">
+          <span class="channel-tag musinsa">2-2 무신사 뷰티</span>
+        </div>
+        <div class="channel-rows">
+          <div class="ch-row"><span class="ch-key">주요 이용층</span><span class="ch-val">10~20대 비중 높음</span></div>
+          <div class="ch-row"><span class="ch-key">구매 판단 기준</span><span class="ch-val">스타일 · 유행 감도</span></div>
+          <div class="ch-row"><span class="ch-key">구매 전 정보</span><span class="ch-val">브랜드 이미지 · 무드</span></div>
+          <div class="ch-row"><span class="ch-key">구매 기준</span><span class="ch-val">브랜드 정체성 · 감성, 할인 · 적립금 병행</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top: 16px;">
+      <span class="callout-icon">💄</span>
+      <strong>버티컬은 "랭킹 게임".</strong> 플랫폼 내 추천 알고리즘과 콘텐츠가 핵심. <em>랭킹에 진입하면 자연 매출이 따라옵니다</em>.
+    </div>
+  </div>
+</section>
+
+<!-- 36-4. 숏폼 이커머스 -->
+<section class="slide" data-name="숏폼 이커머스">
+  <div class="slide-inner">
+    <div class="section-num">SECTION 09 · 채널 특징</div>
+    <h1>숏폼 이커머스 <span class="grad">[발견형 쇼핑]</span></h1>
+    <p class="lead">기존 이커머스와 알고리즘 자체가 다릅니다.</p>
+
+    <div class="algo-compare">
+      <div class="algo-side traditional">
+        <div class="algo-tag">기존 이커머스</div>
+        <h3>목적형 쇼핑</h3>
+        <div class="algo-flow">검색 → 비교 → 상세 → 구매</div>
+        <ul class="algo-list">
+          <li>전통적 추천 시스템</li>
+          <li>낮은 체류 시간 (검색 중심)</li>
+          <li>구매 의사 명확</li>
+        </ul>
+      </div>
+
+      <div class="algo-side shortform">
+        <div class="algo-tag">숏폼 이커머스</div>
+        <h3>발견형 쇼핑</h3>
+        <div class="algo-flow">영상 → 즉시 구매 / 카트 추가</div>
+        <ul class="algo-list">
+          <li>AI 추천 + 영상 소비 행동 데이터<br /><span style="opacity:.6;">(시청 유지·재생수·피드 순환)</span></li>
+          <li>높은 체류 시간 (피드 지속성)</li>
+          <li>감정 · 흥미 기반 구매</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top: 16px;">
+      <span class="callout-icon">📲</span>
+      <strong>숏폼은 "발견의 게임".</strong> 검색이 아닌 <em>피드에서 우연히 만나는</em> 구조.
+      그래서 <strong>좋은 콘텐츠 1개</strong>가 곧 매출입니다.
+    </div>
+  </div>
+</section>
+
+<!-- 36-5. 채널별 ROAS 목표 (전략) -->
+<section class="slide" data-name="채널별로 ROAS 목표가 다릅니다">
+  <div class="slide-inner">
+    <div class="section-num">SECTION 09</div>
+    <h1>채널별로 <span class="grad">ROAS 목표</span>를 다르게 잡으세요</h1>
+    <p class="lead">"무조건 ROAS 300%"가 정답이 아닙니다.<br />채널의 <em>전략적 역할</em>에 따라 목표가 달라야 합니다.</p>
+
+    <div class="roas-strategy">
+      <div class="strategy-card">
+        <div class="strategy-icon">⚖️</div>
+        <h3>BEP 맞추는 ROAS</h3>
+        <p>손익분기점. 이 아래로 내려가면 손해.<br />최소한 이건 맞춰야 함.</p>
+      </div>
+      <div class="strategy-card highlight">
+        <div class="strategy-icon">🎯</div>
+        <h3>광고비 또이또이 ROAS</h3>
+        <p>광고비를 매출로 그대로 회수.<br /><em>채널 진입 / 랭킹 빌딩</em> 단계의 현실적 목표.</p>
+      </div>
+      <div class="strategy-card">
+        <div class="strategy-icon">📈</div>
+        <h3>수익 ROAS</h3>
+        <p>안정적 수익 구간.<br />검증된 채널의 운영 목표.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <span class="callout-icon">💡</span>
+      <strong>예) 올영에서는 광고비만 챙기고, 랭킹을 만들어 자사몰·쿠팡에서 수익을 챙기기도 합니다.</strong><br />
+      채널을 <em>독립적으로 보지 말고, 전체 매출 동선의 일부</em>로 보세요.
+    </div>
+  </div>
+</section>
+
+<!-- 36-6. ROAS 계산기 -->
+<section class="slide" data-name="ROAS 계산기">
+  <div class="slide-inner">
+    <div class="section-num">SECTION 09</div>
+    <h1>직접 <span class="grad">계산해봅시다</span></h1>
+    <p class="lead" style="margin-bottom: 0;">우리 제품의 또이또이·BEP ROAS는 얼마일까?</p>
+
+    <div class="roas-calc">
+      <div class="calc-inputs">
+        <div class="calc-row">
+          <label>판매 가격 <span>(원)</span></label>
+          <input type="number" id="calc-price" value="30000" step="1000" />
+        </div>
+        <div class="calc-row">
+          <label>원가율 <span>(%)</span></label>
+          <input type="number" id="calc-cost-rate" value="30" step="1" min="0" max="100" />
+        </div>
+        <div class="calc-row">
+          <label>기타 비용 <span>(수수료·배송 등 매출 대비 %)</span></label>
+          <input type="number" id="calc-other" value="15" step="1" min="0" max="100" />
+        </div>
+        <div class="calc-row">
+          <label>광고 매체비 <span>(원, 캠페인 총액)</span></label>
+          <input type="number" id="calc-media" value="2000000" step="100000" />
+        </div>
+        <div class="calc-row">
+          <label>광고 소재 비용 <span>(원, 캠페인 총액)</span></label>
+          <input type="number" id="calc-creative" value="500000" step="50000" />
+        </div>
+      </div>
+
+      <div class="calc-results">
+        <div class="result-card breakeven">
+          <div class="result-label">또이또이 ROAS</div>
+          <div class="result-value" id="result-even">—</div>
+          <div class="result-sub">매체비만 회수 (소재비 제외).<br />채널 진입 / 랭킹 빌딩 단계의 현실적 목표.</div>
+        </div>
+        <div class="result-card bep">
+          <div class="result-label">BEP ROAS</div>
+          <div class="result-value" id="result-bep">—</div>
+          <div class="result-sub">매체비 + 소재비 + 원가 + 기타비용 모두 회수.<br />이 아래로 가면 손해.</div>
+        </div>
+        <div class="result-card meta">
+          <div class="result-row"><span>또이또이 매출</span><span id="result-rev-even">—</span></div>
+          <div class="result-row"><span>BEP 매출</span><span id="result-rev-bep">—</span></div>
+          <div class="result-row"><span>매체비</span><span id="result-media">—</span></div>
+          <div class="result-row"><span>소재비</span><span id="result-creative">—</span></div>
+          <div class="result-row total"><span>총 광고비 (매체+소재)</span><span id="result-total-ad">—</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 10: 마무리 (기존 9 → 10) ============ -->
+
+<!-- 핵심 -->
+<section class="slide" data-name="오늘의 핵심">
+  <div class="slide-inner">
+    <div class="section-num">SECTION 10 · 마무리</div>
+    <h1>오늘의 <span class="grad">핵심 3가지</span></h1>
+    <p class="lead">기억해주실 것은 단 3가지.</p>
+
+    <div class="key-points">
+      <div class="key-point">
+        <div class="num">KEY 01</div>
+        <h3>타겟을 좁혀라</h3>
+        <p>한 명의 타겟을 정확히 그릴 수 있어야, 첫 3초가 살아납니다. 답은 <em>고객조사</em>에 있습니다.</p>
+      </div>
+      <div class="key-point">
+        <div class="num">KEY 02</div>
+        <h3>1영상 1가치</h3>
+        <p>결론부터, 근거는 3가지. 가치가 분산되는 순간 시청자는 떠납니다.</p>
+      </div>
+      <div class="key-point">
+        <div class="num">KEY 03</div>
+        <h3>의도에 맞는 인플루언서</h3>
+        <p>화질보다 중요한 건 메시지를 의도대로 전달할 수 있는 사람입니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 37. 글로브 도와드리는 것 -->
+<section class="slide" data-name="글로브가 도와드릴 수 있는 것">
+  <div class="slide-inner">
+    <div class="section-num">SECTION 10</div>
+    <h1>이걸 혼자 챙기긴 어렵죠.<br /><span class="grad">글로브가 도와드립니다</span></h1>
+
+    <div class="glovv-help">
+      <div class="help-item">
+        <div class="help-icon">🎯</div>
+        <div>
+          <h4>영상 타겟 설정</h4>
+          <p>1가지 가치 전달 구조로, 가이드라인을 간단하게 설정 가능합니다.</p>
+        </div>
+      </div>
+      <div class="help-item">
+        <div class="help-icon">✨</div>
+        <div>
+          <h4>까다롭게 선별된 인플루언서</h4>
+          <p>의도에 맞게 만들 수 있는 인플루언서만 모아두었습니다 (15:1).</p>
+        </div>
+      </div>
+      <div class="help-item">
+        <div class="help-icon">💸</div>
+        <div>
+          <h4>합리적인 가격</h4>
+          <p>따로 컨택했을 때보다 훨씬 저렴하게 이용 가능합니다.</p>
+        </div>
+      </div>
+      <div class="help-item">
+        <div class="help-icon">♾️</div>
+        <div>
+          <h4>2차 활용 무제한</h4>
+          <p>기한·범위 제한 없이 자유롭게 사용 가능합니다.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 38. 마지막 CTA -->
+<section class="slide" data-name="감사합니다">
+  <div class="slide-inner center">
+    <div class="section-num">감사합니다</div>
+    <h1>지금 글로브에서<br /><span class="grad">시작해보세요</span></h1>
+    <p class="lead" style="margin-top: 24px;">5분이면 캠페인 개설 완료.<br />1,500개 이상의 뷰티 브랜드가 이미 사용 중입니다.</p>
+
+    <div class="cta-section" style="max-width: 700px; margin: 32px auto 0;">
+      <h2 style="margin: 0;">함께 시작해볼까요?</h2>
+      <div class="cta-buttons">
+        <a href="#" class="cta-btn primary">글로브 이용 문의 →</a>
+        <button class="cta-btn kakao" onclick="shareKakao()">💬 카카오톡 공유하기</button>
+      </div>
+    </div>
+
+    <p style="margin-top: 40px; font-size: 18px; color: var(--text-3);">감사합니다. 🙏</p>
+  </div>
+</section>
+
+</main>
+
+<nav class="bottom-nav">
+  <div class="nav-inner">
+    <button class="nav-btn" id="prevBtn" onclick="goPrev()">← 이전</button>
+
+    <div class="nav-center">
+      <button class="cta-mini toc" onclick="goToc()">목차</button>
+      <button class="cta-mini kakao" onclick="shareKakao()">💬 공유</button>
+      <a href="#" class="cta-mini glovv">글로브 문의 →</a>
+    </div>
+
+    <button class="nav-btn next" id="nextBtn" onclick="goNext()">다음 →</button>
+  </div>
+</nav>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+const total = slides.length;
+let current = 0;
+
+document.getElementById('totalNum').textContent = total;
+
+function update() {
+  slides.forEach((s, i) => {
+    s.classList.toggle('active', i === current);
+  });
+  document.getElementById('currentNum').textContent = current + 1;
+  document.getElementById('sectionName').textContent = slides[current].dataset.name;
+  document.getElementById('progressFill').style.width = ((current + 1) / total * 100) + '%';
+  document.getElementById('prevBtn').disabled = current === 0;
+  document.getElementById('nextBtn').disabled = current === total - 1;
+  slides[current].scrollTop = 0;
+}
+
+function goNext() {
+  if (current < total - 1) {
+    current++;
+    update();
+  }
+}
+
+function goPrev() {
+  if (current > 0) {
+    current--;
+    update();
+  }
+}
+
+function goToc() {
+  current = 1;
+  update();
+}
+
+function jumpTo(idx) {
+  if (idx >= 0 && idx < total) {
+    current = idx;
+    update();
+  }
+}
+
+document.querySelectorAll('[data-jump]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const target = parseInt(btn.dataset.jump, 10);
+    jumpTo(target);
+  });
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+    e.preventDefault();
+    goNext();
+  }
+  if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+    e.preventDefault();
+    goPrev();
+  }
+  if (e.key === 'Home') {
+    current = 0;
+    update();
+  }
+  if (e.key === 'End') {
+    current = total - 1;
+    update();
+  }
+});
+
+function shareKakao() {
+  const url = window.location.href;
+  if (navigator.share) {
+    navigator.share({
+      title: '좋은 콘텐츠를 만드는 법 - Glovv 웨비나',
+      text: '2,000개 브랜드와 일하며 발견한 콘텐츠의 공식',
+      url: url
+    }).catch(() => {});
+  } else {
+    navigator.clipboard.writeText(url).then(() => {
+      alert('링크가 복사되었습니다!');
+    });
+  }
+}
+
+update();
+
+// ===== ROAS Calculator =====
+function fmtKRW(n) {
+  if (!isFinite(n) || isNaN(n)) return '—';
+  return Math.round(n).toLocaleString('ko-KR') + '원';
+}
+
+function fmtPct(n) {
+  if (!isFinite(n) || isNaN(n)) return '—';
+  return Math.round(n).toLocaleString('ko-KR') + '%';
+}
+
+function calcRoas() {
+  const price = +document.getElementById('calc-price').value || 0;
+  const costRate = (+document.getElementById('calc-cost-rate').value || 0) / 100;
+  const otherRate = (+document.getElementById('calc-other').value || 0) / 100;
+  const media = +document.getElementById('calc-media').value || 0;
+  const creative = +document.getElementById('calc-creative').value || 0;
+
+  // 마진율 = 1 - 원가율 - 기타비용율 (광고비 제외 매출에서 남는 비율)
+  const marginRate = 1 - costRate - otherRate;
+
+  // 또이또이 ROAS: 매체비만 회수 (소재비 제외)
+  // 매출 × marginRate = media → 또이또이 매출 = media / marginRate
+  // 또이또이 ROAS = 또이또이 매출 / 매체비
+  // = (media / marginRate) / media = 1 / marginRate
+  let evenRevenue = 0, evenRoas = Infinity;
+  if (marginRate > 0) {
+    evenRevenue = media / marginRate;
+    evenRoas = (evenRevenue / media) * 100;
+  }
+
+  // BEP ROAS: 매체비 + 소재비 모두 회수
+  // 매출 × marginRate = media + creative → BEP 매출 = (media + creative) / marginRate
+  // ROAS는 매출/매체비로 정의 (광고 표준)
+  let bepRevenue = 0, bepRoas = Infinity;
+  if (marginRate > 0 && media > 0) {
+    bepRevenue = (media + creative) / marginRate;
+    bepRoas = (bepRevenue / media) * 100;
+  }
+
+  // UI 업데이트
+  document.getElementById('result-even').textContent = fmtPct(evenRoas);
+  document.getElementById('result-bep').textContent = fmtPct(bepRoas);
+  document.getElementById('result-rev-even').textContent = fmtKRW(evenRevenue);
+  document.getElementById('result-rev-bep').textContent = fmtKRW(bepRevenue);
+  document.getElementById('result-media').textContent = fmtKRW(media);
+  document.getElementById('result-creative').textContent = fmtKRW(creative);
+  document.getElementById('result-total-ad').textContent = fmtKRW(media + creative);
+}
+
+// 초기 계산 + 입력 이벤트 바인딩
+document.querySelectorAll('.roas-calc input').forEach(inp => {
+  inp.addEventListener('input', calcRoas);
+});
+calcRoas();
+</script>
+
+</body>
+</html>
