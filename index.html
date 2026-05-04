@@ -143,12 +143,14 @@ main {
   padding: 40px 48px;
   display: none;
   flex-direction: column;
-  justify-content: center;
   overflow-y: auto;
   animation: fadeIn .35s ease-out;
 }
 
 .slide.active { display: flex; }
+
+/* margin: auto 패턴 — 콘텐츠가 슬라이드보다 작으면 가운데, 크면 위에서부터 보이게 */
+.slide > .slide-inner { margin: auto; }
 
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(8px); }
@@ -1001,6 +1003,64 @@ em { font-style: normal; color: var(--pink); font-weight: 600; }
 }
 
 .cta-section > * { position: relative; }
+
+/* ═══════════════════════════════════════
+   브랜드 로고 그리드 (마지막 페이지)
+   ═══════════════════════════════════════ */
+.brands-wrap {
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 28px 24px 24px;
+  margin: 28px auto 0;
+  max-width: 720px;
+  position: relative;
+  overflow: hidden;
+}
+
+.brands-caption {
+  text-align: center;
+  font-size: 11px;
+  color: var(--text-3);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  margin-bottom: 22px;
+  text-transform: uppercase;
+  font-family: 'Manrope', sans-serif;
+}
+
+.brands-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 22px 14px;
+  align-items: center;
+  justify-items: center;
+}
+
+.brand-logo {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--text);
+  text-align: center;
+  line-height: 1.25;
+  opacity: 0.78;
+  letter-spacing: -0.02em;
+  transition: opacity .2s;
+  font-family: 'Pretendard', -apple-system, sans-serif;
+  white-space: nowrap;
+}
+
+.brand-logo:hover { opacity: 1; }
+
+@media (max-width: 768px) {
+  .brands-wrap { padding: 22px 14px 20px; }
+  .brands-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px 10px;
+  }
+  .brand-logo { font-size: 11px; }
+  .brands-caption { font-size: 10px; margin-bottom: 18px; }
+}
 
 .cta-buttons {
   display: flex;
@@ -2675,7 +2735,7 @@ em { font-style: normal; color: var(--pink); font-weight: 600; }
 <section class="slide" data-name="① 문제 제시 · 호기심 유발">
   <div class="slide-inner wide">
     <div class="section-num">SECTION 03 · 공감 방식 ①</div>
-    <h1>문제 제시 · 호기심 유발</h1>
+    <h1>문제 제시 · <span class="grad">호기심 유발</span></h1>
     <p class="lead">시청자가 겪는 문제를 직접 보여주거나, 궁금증을 자극합니다.</p>
 
     <div class="video-grid-2">
@@ -2705,7 +2765,7 @@ em { font-style: normal; color: var(--pink); font-weight: 600; }
 <section class="slide" data-name="② 워너비 제시">
   <div class="slide-inner wide">
     <div class="section-num">SECTION 03 · 공감 방식 ②</div>
-    <h1>워너비 제시</h1>
+    <h1>워너비 <span class="grad">제시</span></h1>
     <p class="lead">되고 싶은 모습을 먼저 보여주면, 시청자는 "나도 저렇게 되고 싶다"고 느낍니다.</p>
 
     <div class="video-grid-2">
@@ -2735,7 +2795,7 @@ em { font-style: normal; color: var(--pink); font-weight: 600; }
 <section class="slide" data-name="③ 통념 비판">
   <div class="slide-inner wide">
     <div class="section-num">SECTION 03 · 공감 방식 ③</div>
-    <h1>통념 비판</h1>
+    <h1>통념 <span class="grad">비판</span></h1>
     <p class="lead">"이렇게 하지 마세요", "이것부터 바꿔야 합니다" — 기존의 상식을 뒤집습니다.</p>
 
     <div class="video-grid-2">
@@ -2862,12 +2922,7 @@ em { font-style: normal; color: var(--pink); font-weight: 600; }
   <div class="slide-inner center">
     <div class="section-num">SECTION 04 · 고객조사</div>
     <h1>"좁혀라"는 알겠는데,<br /><span class="grad">어떻게?</span></h1>
-
-    <div class="card gradient-border" style="padding: 56px 32px; margin-top: 32px;">
-      <h3 style="margin: 0; font-size: clamp(20px, 2.4vw, 28px); color: var(--text-2); font-weight: 600;">답은</h3>
-      <div class="big-num" style="margin-top: 12px;">고객조사</div>
-      <h3 style="margin-top: 16px; font-size: clamp(20px, 2.4vw, 28px); color: var(--text-2); font-weight: 600;">입니다.</h3>
-    </div>
+    <p class="lead" style="margin-top: 32px;">답은 <em>고객조사</em>입니다.</p>
   </div>
 </section>
 
@@ -3794,6 +3849,39 @@ em { font-style: normal; color: var(--pink); font-weight: 600; }
     <h1>지금 글로브에서<br /><span class="grad">시작해보세요</span></h1>
     <p class="lead" style="margin: 24px auto 0; text-align: center; max-width: 640px;">5분이면 캠페인 개설 완료.<br />2,000개 이상의 뷰티 브랜드가 이미 사용 중입니다.</p>
 
+    <div class="brands-wrap">
+      <p class="brands-caption">함께하는 주요 뷰티 브랜드</p>
+      <div class="brands-grid">
+        <div class="brand-logo" style="text-transform:uppercase;letter-spacing:0.02em;">Amorepacific</div>
+        <div class="brand-logo">LG생활건강</div>
+        <div class="brand-logo" style="text-transform:uppercase;">Musinsa Beauty</div>
+        <div class="brand-logo" style="font-family:'Times New Roman',serif;font-style:italic;font-weight:400;">Banila co</div>
+        <div class="brand-logo" style="text-transform:uppercase;letter-spacing:0.05em;">VT</div>
+        <div class="brand-logo" style="text-transform:uppercase;letter-spacing:0.08em;">LANEIGE</div>
+
+        <div class="brand-logo">마녀공장</div>
+        <div class="brand-logo" style="letter-spacing:0.02em;">goodal</div>
+        <div class="brand-logo" style="text-transform:uppercase;letter-spacing:0.05em;">MEDIHEAL</div>
+        <div class="brand-logo" style="text-transform:uppercase;letter-spacing:0.05em;">AESTURA</div>
+        <div class="brand-logo" style="text-transform:uppercase;letter-spacing:0.02em;">Torriden</div>
+        <div class="brand-logo" style="text-transform:uppercase;letter-spacing:0.05em;">ROUND LAB</div>
+
+        <div class="brand-logo" style="font-style:italic;letter-spacing:-0.02em;">rom&amp;nd</div>
+        <div class="brand-logo" style="font-weight:300;text-transform:uppercase;letter-spacing:0.12em;">hince</div>
+        <div class="brand-logo" style="text-transform:uppercase;letter-spacing:0.08em;">PERIPERA</div>
+        <div class="brand-logo" style="text-transform:uppercase;letter-spacing:0.05em;">CLIO</div>
+        <div class="brand-logo" style="letter-spacing:0.02em;">Centellian24</div>
+        <div class="brand-logo" style="text-transform:uppercase;letter-spacing:0.02em;">SKIN1004</div>
+
+        <div class="brand-logo" style="text-transform:uppercase;letter-spacing:0.05em;">COSRX</div>
+        <div class="brand-logo" style="letter-spacing:0.02em;">Age 20's</div>
+        <div class="brand-logo">정샘물</div>
+        <div class="brand-logo" style="text-transform:uppercase;letter-spacing:0.05em;">FWEE</div>
+        <div class="brand-logo">무지개맨션</div>
+        <div class="brand-logo" style="letter-spacing:0.02em;">Huxley</div>
+      </div>
+    </div>
+
     <div class="cta-section" style="max-width: 720px; margin: 32px auto 0;">
       <h2 style="margin: 0; text-align: center;">함께 시작해볼까요?</h2>
       <div class="cta-buttons">
@@ -3806,8 +3894,8 @@ em { font-style: normal; color: var(--pink); font-weight: 600; }
       </div>
 
       <div class="cta-buttons" style="margin-top: 12px;">
-        <a href="https://glovv.co.kr/intro" target="_blank" rel="noopener" class="cta-btn outline">📘 글로브 소개서</a>
-        <a href="https://glovv.co.kr/reference" target="_blank" rel="noopener" class="cta-btn outline">📊 글로브 레퍼런스</a>
+        <a href="https://glovv.co.kr/redirect/intro" target="_blank" rel="noopener" class="cta-btn outline">📘 글로브 소개서</a>
+        <a href="https://glovv.co.kr/redirect/reference" target="_blank" rel="noopener" class="cta-btn outline">📊 글로브 레퍼런스</a>
       </div>
     </div>
   </div>
@@ -3905,14 +3993,6 @@ function shareKakao() {
   const title = '좋은 콘텐츠를 만드는 법 - Glovv 웨비나';
   const description = '2,000개 브랜드와 일하며 발견한 콘텐츠의 공식';
 
-  // === 진단 로그 (개발자 도구 콘솔에서 확인 가능) ===
-  console.log('[Kakao Share] Attempting share. Kakao SDK loaded:', typeof Kakao !== 'undefined');
-  if (typeof Kakao !== 'undefined') {
-    console.log('[Kakao Share] Initialized:', Kakao.isInitialized?.());
-    console.log('[Kakao Share] Has Share API:', !!Kakao.Share);
-  }
-  console.log('[Kakao Share] Current URL:', url);
-
   // 1순위: Kakao SDK (실제 카카오톡 공유)
   if (typeof Kakao !== 'undefined' && Kakao.isInitialized() && Kakao.Share) {
     try {
@@ -3931,14 +4011,11 @@ function shareKakao() {
           }
         ]
       });
-      console.log('[Kakao Share] sendDefault called successfully');
       return;
     } catch (e) {
-      console.error('[Kakao Share] sendDefault failed, falling back:', e);
-      alert('카카오톡 공유 호출에 실패했습니다.\n도메인 등록 여부를 확인해주세요. 일단 링크를 복사합니다.');
+      // SDK 호출 실패 시 폴백으로 진행
+      console.warn('Kakao share failed, falling back:', e);
     }
-  } else {
-    console.warn('[Kakao Share] SDK not ready, falling back');
   }
 
   // 2순위: 모바일 시스템 공유 시트
