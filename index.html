@@ -12,6 +12,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js" integrity="sha384-TiCUE00h649CAMonG018J2ujOgDKW/kVWlChEuu4jK2vxfAAD0eZxzCKakxg55G4" crossorigin="anonymous"></script>
+<script>
+  if (typeof Kakao !== 'undefined' && !Kakao.isInitialized()) {
+    Kakao.init('a4a16f92f85178959bda3db49b158c4b');
+  }
+</script>
 <style>
 :root {
   --bg: #0a0a0c;
@@ -1915,7 +1921,7 @@ em { font-style: normal; color: var(--pink); font-weight: 600; }
 
 /* PC에서도 큼지막한 영상 (스크롤 약간 허용) — 9:16 세로 영상용 */
 .video-frame.lg {
-  max-width: 480px;
+  max-width: 580px;
 }
 @media (max-width: 768px) {
   .video-frame.lg {
@@ -1989,7 +1995,7 @@ em { font-style: normal; color: var(--pink); font-weight: 600; }
 
 /* 비교 그리드 안의 video-frame은 PC에서도 큼지막하게 */
 .video-grid-2 .video-frame {
-  max-width: 440px;
+  max-width: 540px;
 }
 
 @media (max-width: 768px) {
@@ -3742,7 +3748,7 @@ em { font-style: normal; color: var(--pink); font-weight: 600; }
     <div class="cta-section" style="max-width: 720px; margin: 32px auto 0;">
       <h2 style="margin: 0; text-align: center;">함께 시작해볼까요?</h2>
       <div class="cta-buttons">
-        <a href="#" class="cta-btn primary">글로브 이용 문의 →</a>
+        <a href="https://tally.so/r/GxYq0k" target="_blank" rel="noopener" class="cta-btn primary">글로브 이용 문의 →</a>
         <button class="cta-btn kakao" onclick="shareKakao()">💬 카카오톡 공유하기</button>
       </div>
 
@@ -3767,7 +3773,7 @@ em { font-style: normal; color: var(--pink); font-weight: 600; }
     <div class="nav-center">
       <button class="cta-mini toc" onclick="goToc()">목차</button>
       <button class="cta-mini kakao" onclick="shareKakao()">💬 공유</button>
-      <a href="#" class="cta-mini glovv">글로브 문의 →</a>
+      <a href="https://tally.so/r/GxYq0k" target="_blank" rel="noopener" class="cta-mini glovv">글로브 문의 →</a>
     </div>
 
     <button class="nav-btn next" id="nextBtn" onclick="goNext()">다음 →</button>
@@ -3847,13 +3853,42 @@ document.addEventListener('keydown', (e) => {
 
 function shareKakao() {
   const url = window.location.href;
+  const title = '좋은 콘텐츠를 만드는 법 - Glovv 웨비나';
+  const description = '2,000개 브랜드와 일하며 발견한 콘텐츠의 공식';
+
+  // 1순위: Kakao SDK (실제 카카오톡 공유)
+  if (typeof Kakao !== 'undefined' && Kakao.isInitialized() && Kakao.Share) {
+    try {
+      Kakao.Share.sendDefault({
+        objectType: 'feed',
+        content: {
+          title: title,
+          description: description,
+          imageUrl: new URL('images/logo_glovv_profile.png', window.location.href).href,
+          link: { mobileWebUrl: url, webUrl: url }
+        },
+        buttons: [
+          {
+            title: '웨비나 보러 가기',
+            link: { mobileWebUrl: url, webUrl: url }
+          }
+        ]
+      });
+      return;
+    } catch (e) {
+      // SDK 호출 실패 시 폴백으로 진행
+      console.warn('Kakao share failed, falling back:', e);
+    }
+  }
+
+  // 2순위: 모바일 시스템 공유 시트
   if (navigator.share) {
-    navigator.share({
-      title: '좋은 콘텐츠를 만드는 법 - Glovv 웨비나',
-      text: '2,000개 브랜드와 일하며 발견한 콘텐츠의 공식',
-      url: url
-    }).catch(() => {});
-  } else {
+    navigator.share({ title: title, text: description, url: url }).catch(() => {});
+    return;
+  }
+
+  // 3순위: 클립보드 복사
+  if (navigator.clipboard) {
     navigator.clipboard.writeText(url).then(() => {
       alert('링크가 복사되었습니다!');
     });
