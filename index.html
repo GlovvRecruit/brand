@@ -1296,7 +1296,7 @@ em { font-style: normal; color: var(--pink); font-weight: 600; }
   .header-inner { padding: 0 16px; }
   .progress-wrap { display: none; }
   .brand-divider, .brand-title { display: none; }
-  .slide { padding: 24px 20px; }
+  .slide { padding: 24px 20px; justify-content: flex-start; }
   .pillars { grid-template-columns: 1fr; gap: 12px; }
   .pillar { padding: 20px; }
   .pillar-num { font-size: 40px; }
@@ -1467,6 +1467,7 @@ em { font-style: normal; color: var(--pink); font-weight: 600; }
 .channel-tag.coupang { background: #C5252D; }
 .channel-tag.oliveyoung { background: #1A8917; }
 .channel-tag.musinsa { background: #1a1a1a; border: 1px solid #555; }
+.channel-tag.daiso { background: #E60012; }
 
 .channel-rows {
   padding: 4px 0;
@@ -2654,7 +2655,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="slide" data-name="좋은 타이틀 vs 안 좋은 타이틀">
   <div class="slide-inner wide">
     <div class="section-num">SECTION 02</div>
-    <h1>좋은 타이틀 vs <span class="grad">안 좋은 타이틀</span></h1>
+    <h1><span class="grad">좋은 타이틀</span> vs 안 좋은 타이틀</h1>
 
     <div class="video-grid-2">
       <div class="video-block align-center">
@@ -3004,7 +3005,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="slide-inner center">
     <div class="section-num">SECTION 05 · 끝까지 보게 하는 법</div>
     <h1>끝까지 보게<br />만드는 법</h1>
-    <p class="lead" style="margin-top: 32px;">비법은 단 하나.<br /><em>1개의 영상에 1개의 가치만.</em></p>
+    <p class="lead" style="margin-top: 32px;">1개의 영상에 <em>1개의 가치만</em>.</p>
   </div>
 </section>
 
@@ -3653,6 +3654,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="ch-row"><span class="ch-key">구매 판단 기준</span><span class="ch-val">스타일 · 유행 감도</span></div>
         </div>
       </div>
+
+      <div class="channel-card">
+        <div class="channel-head">
+          <span class="channel-tag daiso">다이소</span>
+        </div>
+        <div class="channel-rows channel-rows-big">
+          <div class="ch-row"><span class="ch-key">주요 이용층</span><span class="ch-val">10대 ~ 20대 초반 (잘파세대)</span></div>
+          <div class="ch-row"><span class="ch-key">구매 판단 기준</span><span class="ch-val">가성비 · 소용량 체험</span></div>
+        </div>
+      </div>
     </div>
 
     <div class="callout" style="margin-top: 16px;">
@@ -3702,11 +3713,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="section-num">SECTION 09</div>
     <h1>직접 <span class="grad">계산해봅시다</span></h1>
     <p class="lead" style="margin-bottom: 0;">우리 제품의 광고비 회수·BEP ROAS는 얼마일까?</p>
+    <p style="font-size: 14px; color: var(--text-3); margin-top: 8px; margin-bottom: 0;">※ 모든 금액은 <strong style="color: var(--text-2);">부가세 제외(VAT 별도)</strong> 기준입니다.</p>
 
     <div class="roas-calc">
       <div class="calc-inputs">
         <div class="calc-row">
-          <label>판매 가격 <span>(원)</span></label>
+          <label>판매 가격 <span>(원, 부가세 제외)</span></label>
           <input type="number" id="calc-price" value="30000" step="1000" />
         </div>
         <div class="calc-row">
@@ -3718,7 +3730,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <input type="number" id="calc-inventory" value="5" step="1" min="0" max="100" />
         </div>
         <div class="calc-row">
-          <label>기타 비용 <span>(수수료·배송 등 매출 대비 %)</span></label>
+          <label>플랫폼 수수료 <span>(자사몰 0%, 스마트스토어 약 6%, 쿠팡 약 10% / 매출 대비 %)</span></label>
+          <input type="number" id="calc-platform" value="10" step="0.1" min="0" max="100" />
+        </div>
+        <div class="calc-row">
+          <label>카드(PG) 수수료 <span>(통상 2~3% / 매출 대비 %)</span></label>
+          <input type="number" id="calc-card" value="2.5" step="0.1" min="0" max="100" />
+        </div>
+        <div class="calc-row">
+          <label>기타 비용 <span>(배송·포장 등 매출 대비 %)</span></label>
           <input type="number" id="calc-other" value="15" step="1" min="0" max="100" />
         </div>
         <div class="calc-row">
@@ -3740,7 +3760,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="result-card bep">
           <div class="result-label">BEP ROAS</div>
           <div class="result-value" id="result-bep">—</div>
-          <div class="result-sub">매체비 + 소재비 + 원가 + 재고비 + 기타비용 모두 회수.<br />이 아래로 가면 손해.</div>
+          <div class="result-sub">매체비 + 소재비 + 원가 + 재고비 + 플랫폼·카드 수수료 + 기타비용 모두 회수.<br />이 아래로 가면 손해.</div>
         </div>
         <div class="result-card meta">
           <div class="result-row"><span>광고비 회수 매출</span><span id="result-rev-even">—</span></div>
@@ -3868,8 +3888,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="nav-center">
       <button class="cta-mini toc" onclick="goToc()">목차</button>
-      <button class="cta-mini kakao" onclick="shareKakao()">💬 공유</button>
-      <a href="https://tally.so/r/GxYq0k" target="_blank" rel="noopener" class="cta-mini glovv">글로브 문의 →</a>
+      <button class="cta-mini kakao" onclick="shareKakao()">공유</button>
+      <a href="https://tally.so/r/GxYq0k" target="_blank" rel="noopener" class="cta-mini glovv">글로브 문의</a>
     </div>
 
     <button class="nav-btn next" id="nextBtn" onclick="goNext()">다음 →</button>
@@ -3919,7 +3939,14 @@ function update() {
   document.getElementById('progressFill').style.width = ((current + 1) / total * 100) + '%';
   document.getElementById('prevBtn').disabled = current === 0;
   document.getElementById('nextBtn').disabled = current === total - 1;
+
+  // 새 슬라이드 최상단으로 스크롤 (모바일 호환을 위해 즉시 + 다음 프레임 두 번 처리)
   slides[current].scrollTop = 0;
+  window.scrollTo(0, 0);
+  requestAnimationFrame(function () {
+    slides[current].scrollTop = 0;
+    window.scrollTo(0, 0);
+  });
 
   // 새 슬라이드에 대한 가상 페이지뷰 이벤트 push (GTM에서 GA4 page_view 트리거로 사용)
   var slideName = slides[current].dataset.name || ('slide-' + (current + 1));
@@ -4089,11 +4116,14 @@ function calcRoas() {
   const costRate = (+document.getElementById('calc-cost-rate').value || 0) / 100;
   const otherRate = (+document.getElementById('calc-other').value || 0) / 100;
   const inventoryRate = (+document.getElementById('calc-inventory').value || 0) / 100;
+  const platformRate = (+document.getElementById('calc-platform').value || 0) / 100;
+  const cardRate = (+document.getElementById('calc-card').value || 0) / 100;
   const media = +document.getElementById('calc-media').value || 0;
   const creative = +document.getElementById('calc-creative').value || 0;
 
-  // 마진율 = 1 - 원가율 - 기타비용율 - 재고비율 (광고비 제외 매출에서 남는 비율)
-  const marginRate = 1 - costRate - otherRate - inventoryRate;
+  // 마진율 = 1 - 원가율 - 재고비율 - 플랫폼수수료 - 카드수수료 - 기타비용율 (광고비 제외 매출에서 남는 비율)
+  // 모든 비율은 부가세 제외 매출액 기준
+  const marginRate = 1 - costRate - inventoryRate - platformRate - cardRate - otherRate;
 
   // 광고비 회수 ROAS: 매체비만 회수 (소재비 제외)
   // 매출 × marginRate = media → 회수 매출 = media / marginRate
