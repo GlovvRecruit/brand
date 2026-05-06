@@ -409,15 +409,62 @@ em { font-style: normal; color: var(--pink); font-weight: 600; }
   color: var(--text-3);
 }
 
-.agenda {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-  margin-top: 28px;
+.agenda-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 24px;
 }
 
+.agenda-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.agenda-group-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.agenda-group-tag {
+  display: inline-block;
+  padding: 5px 14px;
+  background: var(--grad);
+  color: #fff;
+  border-radius: 999px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  box-shadow: 0 2px 8px rgba(255, 79, 138, 0.3);
+}
+.agenda-group-tag.wrap-up {
+  background: transparent;
+  color: var(--text-2);
+  border: 1px solid var(--line);
+  box-shadow: none;
+  font-family: 'Pretendard', sans-serif;
+  letter-spacing: 0.03em;
+}
+
+.agenda-group-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.agenda {
+  display: grid;
+  gap: 12px;
+}
+.agenda-grid-3 { grid-template-columns: repeat(3, 1fr); }
+.agenda-grid-2 { grid-template-columns: repeat(2, 1fr); }
+.agenda-grid-1 { grid-template-columns: 1fr; max-width: 33%; }
+
 .agenda-item {
-  padding: 20px;
+  padding: 18px;
   background: var(--bg-2);
   border: 1px solid var(--line);
   border-radius: 14px;
@@ -459,9 +506,16 @@ em { font-style: normal; color: var(--pink); font-weight: 600; }
 }
 
 @media (max-width: 768px) {
-  .agenda { grid-template-columns: 1fr 1fr; gap: 10px; }
-  .agenda-item { padding: 14px; }
-  .agenda-title { font-size: 14px; }
+  .agenda-groups { gap: 16px; margin-top: 18px; }
+  .agenda-group-tag { font-size: 11px; padding: 4px 11px; }
+  .agenda-group-name { font-size: 14px; }
+  .agenda { gap: 8px; }
+  .agenda-grid-3 { grid-template-columns: 1fr 1fr; }
+  .agenda-grid-2 { grid-template-columns: 1fr 1fr; }
+  .agenda-grid-1 { max-width: 100%; }
+  .agenda-item { padding: 12px; }
+  .agenda-num { font-size: 18px; }
+  .agenda-title { font-size: 13px; margin-top: 6px; }
   .agenda-desc { font-size: 11px; }
 }
 
@@ -2984,57 +3038,92 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <h1>오늘 다룰 <span class="grad">10가지</span></h1>
     <p style="margin-bottom: 8px;">아래 항목을 클릭하면 해당 섹션으로 바로 이동합니다.</p>
 
-    <div class="agenda">
-      <button class="agenda-item" data-jump="2">
-        <div class="agenda-num">01</div>
-        <div class="agenda-title">좋은 콘텐츠란?</div>
-        <div class="agenda-desc">ROAS를 가르는 핵심 차이</div>
-      </button>
-      <button class="agenda-item" data-jump="7">
-        <div class="agenda-num">02</div>
-        <div class="agenda-title">스크롤을 멈추는 법</div>
-        <div class="agenda-desc">첫 타이틀의 기술</div>
-      </button>
-      <button class="agenda-item" data-jump="9">
-        <div class="agenda-num">03</div>
-        <div class="agenda-title">첫 3초를 붙잡는 법</div>
-        <div class="agenda-desc">공감과 타겟 좁히기</div>
-      </button>
-      <button class="agenda-item" data-jump="18">
-        <div class="agenda-num">04</div>
-        <div class="agenda-title">고객조사</div>
-        <div class="agenda-desc">타겟을 좁히는 방법</div>
-      </button>
-      <button class="agenda-item" data-jump="22">
-        <div class="agenda-num">05</div>
-        <div class="agenda-title">끝까지 보게 하는 법</div>
-        <div class="agenda-desc">1영상 1가치 + 피라미드</div>
-      </button>
-      <button class="agenda-item" data-jump="29">
-        <div class="agenda-num">06</div>
-        <div class="agenda-title">누가 만드는가</div>
-        <div class="agenda-desc">인플루언서 선별의 중요성</div>
-      </button>
-      <button class="agenda-item" data-jump="34">
-        <div class="agenda-num">07</div>
-        <div class="agenda-title">테스팅 방법론</div>
-        <div class="agenda-desc">변수 검증 + 2차 가공 + 파트너십</div>
-      </button>
-      <button class="agenda-item" data-jump="40">
-        <div class="agenda-num">08</div>
-        <div class="agenda-title">메타 광고 운영</div>
-        <div class="agenda-desc">Cold · Warm · Hot</div>
-      </button>
-      <button class="agenda-item" data-jump="43">
-        <div class="agenda-num">09</div>
-        <div class="agenda-title">채널별 전략 + ROAS</div>
-        <div class="agenda-desc">채널 특징 · ROAS 계산기</div>
-      </button>
-      <button class="agenda-item" data-jump="47">
-        <div class="agenda-num">10</div>
-        <div class="agenda-title">오늘의 핵심</div>
-        <div class="agenda-desc">정리 + 글로브 소개</div>
-      </button>
+    <div class="agenda-groups">
+      <div class="agenda-group">
+        <div class="agenda-group-header">
+          <span class="agenda-group-tag">PART 1</span>
+          <span class="agenda-group-name">좋은 콘텐츠 원칙</span>
+        </div>
+        <div class="agenda agenda-grid-3">
+          <button class="agenda-item" data-jump="2">
+            <div class="agenda-num">01</div>
+            <div class="agenda-title">좋은 콘텐츠란?</div>
+            <div class="agenda-desc">ROAS를 가르는 핵심 차이</div>
+          </button>
+          <button class="agenda-item" data-jump="7">
+            <div class="agenda-num">02</div>
+            <div class="agenda-title">스크롤을 멈추는 법</div>
+            <div class="agenda-desc">첫 타이틀의 기술</div>
+          </button>
+          <button class="agenda-item" data-jump="9">
+            <div class="agenda-num">03</div>
+            <div class="agenda-title">첫 3초를 붙잡는 법</div>
+            <div class="agenda-desc">공감과 타겟 좁히기</div>
+          </button>
+          <button class="agenda-item" data-jump="18">
+            <div class="agenda-num">04</div>
+            <div class="agenda-title">고객조사</div>
+            <div class="agenda-desc">타겟을 좁히는 방법</div>
+          </button>
+          <button class="agenda-item" data-jump="22">
+            <div class="agenda-num">05</div>
+            <div class="agenda-title">끝까지 보게 하는 법</div>
+            <div class="agenda-desc">1영상 1가치 + 피라미드</div>
+          </button>
+        </div>
+      </div>
+
+      <div class="agenda-group">
+        <div class="agenda-group-header">
+          <span class="agenda-group-tag">PART 2</span>
+          <span class="agenda-group-name">제작 및 테스팅 방법</span>
+        </div>
+        <div class="agenda agenda-grid-2">
+          <button class="agenda-item" data-jump="29">
+            <div class="agenda-num">06</div>
+            <div class="agenda-title">누가 만드는가</div>
+            <div class="agenda-desc">인플루언서 선별의 중요성</div>
+          </button>
+          <button class="agenda-item" data-jump="34">
+            <div class="agenda-num">07</div>
+            <div class="agenda-title">테스팅 방법론</div>
+            <div class="agenda-desc">변수 검증 + 2차 가공 + 파트너십</div>
+          </button>
+        </div>
+      </div>
+
+      <div class="agenda-group">
+        <div class="agenda-group-header">
+          <span class="agenda-group-tag">PART 3</span>
+          <span class="agenda-group-name">메타 광고 운영</span>
+        </div>
+        <div class="agenda agenda-grid-2">
+          <button class="agenda-item" data-jump="40">
+            <div class="agenda-num">08</div>
+            <div class="agenda-title">메타 광고 운영</div>
+            <div class="agenda-desc">Cold · Warm · Hot</div>
+          </button>
+          <button class="agenda-item" data-jump="43">
+            <div class="agenda-num">09</div>
+            <div class="agenda-title">채널별 전략 + ROAS</div>
+            <div class="agenda-desc">채널 특징 · ROAS 계산기</div>
+          </button>
+        </div>
+      </div>
+
+      <div class="agenda-group">
+        <div class="agenda-group-header">
+          <span class="agenda-group-tag wrap-up">마무리</span>
+          <span class="agenda-group-name">정리 및 소개</span>
+        </div>
+        <div class="agenda agenda-grid-1">
+          <button class="agenda-item" data-jump="47">
+            <div class="agenda-num">10</div>
+            <div class="agenda-title">오늘의 핵심</div>
+            <div class="agenda-desc">정리 + 글로브 소개</div>
+          </button>
+        </div>
+      </div>
     </div>
 
     <div class="copyright-notice">
