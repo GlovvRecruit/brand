@@ -2684,9 +2684,9 @@ h1, h2, h3, .lead, .big-line {
   .split-2col .pyramid-row .item { padding: 6px 10px; font-size: 12px; }
   .split-2col .callout { font-size: 14px !important; padding: 14px 16px; }
 
-  /* 모바일: 좌측 콜아웃 숨기고 우측(원래 위치) 콜아웃만 표시 */
-  .pc-only-callout { display: none; }
-  .mobile-only-callout { display: flex; }
+  /* 모바일: 깨지지 않도록 좁은 콜아웃 숨기고 전체 너비 콜아웃 사용 */
+  .pc-only-callout { display: flex; margin-top: 0 !important; }
+  .mobile-only-callout { display: none; }
 }
 
 /* 가이드라인 이미지 가로 꽉차게 */
