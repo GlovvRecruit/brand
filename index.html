@@ -840,6 +840,165 @@ em { font-style: normal; color: var(--pink); font-weight: 600; }
   text-align: center;
 }
 
+/* UP 배지: 최근 증가 직관 표시 */
+.stat.has-up { position: relative; }
+.up-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 3px 8px 3px 6px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  color: #fff;
+  background: var(--grad);
+  border-radius: 999px;
+  box-shadow: 0 4px 12px rgba(255, 79, 138, 0.35);
+  line-height: 1;
+  animation: up-pulse 1.8s ease-in-out infinite;
+}
+.up-badge svg {
+  width: 10px;
+  height: 10px;
+  display: block;
+}
+@keyframes up-pulse {
+  0%, 100% { transform: translateY(0); box-shadow: 0 4px 12px rgba(255, 79, 138, 0.35); }
+  50% { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(255, 79, 138, 0.55); }
+}
+@media (max-width: 768px) {
+  .up-badge {
+    top: 8px;
+    right: 8px;
+    font-size: 10px;
+    padding: 2px 7px 2px 5px;
+  }
+  .up-badge svg { width: 9px; height: 9px; }
+}
+
+/* ===== 인플루언서 풀 지속 확장 슬라이드 ===== */
+.pool-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 28px;
+}
+.pool-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.card-label.soon {
+  background: transparent;
+  color: var(--text-2);
+  border: 1px solid var(--line);
+}
+.pool-card-group.two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* 세로형 카드 (이미지가 메인) */
+.pool-card-v {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: all .25s ease;
+  margin-top: 12px;
+}
+.pool-card-v.full + .pool-card-v.full { margin-top: 0; }
+.pool-section .pool-card-v:first-of-type { margin-top: 0; }
+.pool-card-v:hover {
+  border-color: var(--pink);
+  transform: translateY(-2px);
+}
+.pool-card-v.upcoming {
+  background: transparent;
+  border-style: dashed;
+  border-color: rgba(255, 47, 156, 0.35);
+}
+
+.pool-img-wrap {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: var(--bg-3);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* 풀 너비 카드는 가로가 길어서 비율을 더 넓게 */
+.pool-img-wrap.wide {
+  aspect-ratio: 16 / 7;
+}
+.pool-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+.pool-img-wrap.placeholder {
+  background: var(--grad-soft);
+}
+.pool-img-fallback {
+  font-size: 64px;
+  line-height: 1;
+}
+
+.pool-name-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 18px;
+}
+.pool-name-emoji {
+  font-size: 20px;
+  line-height: 1;
+}
+.pool-name {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text);
+}
+.pool-soon-tag {
+  margin-left: auto;
+  font-family: 'Manrope', sans-serif;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: var(--pink);
+  background: var(--grad-soft);
+  padding: 3px 8px;
+  border-radius: 999px;
+}
+
+@media (max-width: 768px) {
+  .pool-stack {
+    gap: 20px;
+    margin-top: 24px;
+  }
+  .pool-card-group.two {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .pool-img-wrap.wide { aspect-ratio: 16 / 9; }
+  .pool-name-row { padding: 12px 14px; gap: 8px; }
+  .pool-name { font-size: 14px; }
+  .pool-name-emoji { font-size: 16px; }
+  .pool-soon-tag { font-size: 9px; padding: 2px 6px; }
+  .pool-img-fallback { font-size: 48px; }
+}
+
 .stat .num {
   font-family: 'Manrope', sans-serif;
   font-size: 56px;
@@ -3514,7 +3673,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             인플루언서가 <strong style="color: var(--text);">의도에서 벗어나지 않게</strong> 만듭니다.
           </div>
         </div>
-        <img src="images/guideline2.png" alt="글로브 가이드라인 - 장면 구성하기" style="margin-top: 16px;" onerror="this.style.display='none';" />
         <p class="img-caption">글로브의 새 가이드라인 양식 — 내일 업데이트 예정</p>
       </div>
     </div>
@@ -3563,12 +3721,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <div class="stats" style="margin-top: 20px;">
-      <div class="stat">
-        <div class="num">350</div>
+      <div class="stat has-up">
+        <span class="up-badge" aria-label="최근 증가">
+          <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 2.5 L9.5 7 H7.5 V9.5 H4.5 V7 H2.5 Z" fill="currentColor"/></svg>
+          UP
+        </span>
+        <div class="num">500</div>
         <div class="label">추천 인플루언서 (명)</div>
       </div>
-      <div class="stat">
-        <div class="num">700</div>
+      <div class="stat has-up">
+        <span class="up-badge" aria-label="최근 증가">
+          <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 2.5 L9.5 7 H7.5 V9.5 H4.5 V7 H2.5 Z" fill="currentColor"/></svg>
+          UP
+        </span>
+        <div class="num">960</div>
         <div class="label">일반 인플루언서 (명)</div>
       </div>
       <div class="stat">
@@ -3579,6 +3745,67 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="callout">
       까다롭게 선별했기 때문에, <em>의도에 맞는 영상을 제작할 확률이 높습니다.</em>
+    </div>
+  </div>
+</section>
+
+<!-- 30-1. 인플루언서 풀 지속 확장 -->
+<section class="slide" data-name="인플루언서 풀 지속 확장">
+  <div class="slide-inner">
+    <div class="section-num">SECTION 06</div>
+    <h1>원하는 영상을 만들 수 있도록<br /><span class="grad">알맞는 인플루언서풀을 지속적으로 추가</span>하고 있습니다</h1>
+
+    <div class="pool-stack">
+      <div class="pool-section">
+        <div class="card-label">최근 추가된 풀</div>
+        <div class="pool-card-v full">
+          <div class="pool-img-wrap wide">
+            <img src="images/honey.png" alt="꿀팁 인플루언서" onerror="this.parentElement.innerHTML='<span class=&quot;pool-img-fallback&quot;>🍯</span>';" />
+          </div>
+          <div class="pool-name-row">
+            <span class="pool-name-emoji">🍯</span>
+            <div class="pool-name">꿀팁 인플루언서</div>
+          </div>
+        </div>
+        <div class="pool-card-v full">
+          <div class="pool-img-wrap wide">
+            <img src="images/fashion.png" alt="패션 인플루언서" onerror="this.parentElement.innerHTML='<span class=&quot;pool-img-fallback&quot;>👗</span>';" />
+          </div>
+          <div class="pool-name-row">
+            <span class="pool-name-emoji">👗</span>
+            <div class="pool-name">패션 인플루언서</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pool-section">
+        <div class="card-label soon">곧 추가될 풀</div>
+        <div class="pool-card-group two">
+          <div class="pool-card-v upcoming">
+            <div class="pool-img-wrap placeholder">
+              <span class="pool-img-fallback">✈️</span>
+            </div>
+            <div class="pool-name-row">
+              <div class="pool-name">승무원 인플루언서</div>
+              <span class="pool-soon-tag">COMING SOON</span>
+            </div>
+          </div>
+          <div class="pool-card-v upcoming">
+            <div class="pool-img-wrap placeholder">
+              <span class="pool-img-fallback">💄</span>
+            </div>
+            <div class="pool-name-row">
+              <div class="pool-name">40대 인플루언서</div>
+              <span class="pool-soon-tag">COMING SOON</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <span class="callout-icon">✨</span>
+      추후 <em>브랜드가 원하는 풀</em>을 지속적으로 추가 예정입니다.
     </div>
   </div>
 </section>
