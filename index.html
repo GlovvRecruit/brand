@@ -105,7 +105,7 @@ src="https://www.facebook.com/tr?id=881944777433930&ev=PageView&noscript=1"
                  radial-gradient(circle at 80% 70%, rgba(255,47,156,.18), transparent 55%);
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; touch-action: manipulation; }
 
 html, body {
   background: var(--bg);
@@ -2662,7 +2662,7 @@ h1, h2, h3, .lead, .big-line {
 .split-2col .split-col { text-align: left; }
 
 /* 24페이지 콜아웃 위치: PC에선 좌측(피라미드 밑), 모바일에선 우측(3 RULES 밑) */
-.pc-only-callout { display: flex; }
+.pc-only-callout { display: block; }
 .mobile-only-callout { display: none; }
 
 @media (max-width: 768px) {
@@ -2685,7 +2685,7 @@ h1, h2, h3, .lead, .big-line {
   .split-2col .callout { font-size: 14px !important; padding: 14px 16px; }
 
   /* 모바일: 깨지지 않도록 좁은 콜아웃 숨기고 전체 너비 콜아웃 사용 */
-  .pc-only-callout { display: flex; margin-top: 0 !important; }
+  .pc-only-callout { display: block; margin-top: 0 !important; }
   .mobile-only-callout { display: none; }
 }
 
@@ -3641,7 +3641,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="callout pc-only-callout" style="margin-top: 32px; font-size: clamp(16px, 1.7vw, 19px); text-align: left;">
       <span class="callout-icon">📌</span>
-      소비자가 느낄 <strong>핵심 가치를 먼저 언급</strong>하고,
+      소비자가 느낄 <strong>핵심 가치를 먼저 언급</strong>하고,<br />
       이후 <em>3가지 이하의 주된 근거(ex. USP)</em>로 뒷받침합니다.
     </div>
   </div>
