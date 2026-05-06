@@ -2393,6 +2393,40 @@ h1, h2, h3, .lead, .big-line {
   font-weight: 600;
 }
 
+/* ===== 지정된 페이지들의 영상 크기 통일 (PC/모바일 모두 가로 10% 축소) ===== */
+/* PC: 영상 가로폭을 486px로 통일 (540px의 90%). 가로세로 비율은 aspect-ratio가 자동 유지 */
+.video-resize .video-frame,
+.video-resize .video-frame.lg {
+  max-width: 486px !important;
+}
+/* 그리드 셀의 블록 max-width도 함께 조정 */
+.video-resize .video-grid-2 .video-block,
+.video-resize .video-compare-lg .video-block {
+  max-width: 486px !important;
+}
+/* 인라인 style="max-width: 540px"가 박혀있는 케이스(페이지 15 hook-bad-grid) 덮어쓰기 */
+.video-resize .hook-bad-grid .video-frame {
+  max-width: 486px !important;
+}
+
+/* 모바일: 가로 길이를 90%로 (가운데 정렬) — 비율 유지 */
+@media (max-width: 768px) {
+  .video-resize .video-frame,
+  .video-resize .video-frame.lg,
+  .video-resize .video-grid-2 .video-frame,
+  .video-resize .video-compare-lg .video-frame,
+  .video-resize .hook-bad-grid .video-frame {
+    width: 90% !important;
+    max-width: 90% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  .video-resize .video-grid-2 .video-block,
+  .video-resize .video-compare-lg .video-block {
+    max-width: 100% !important;
+  }
+}
+
 /* 2분할 레이아웃 (좌/우 비교) */
 .split-2col {
   display: grid;
@@ -2784,7 +2818,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ============ SECTION 1 ============ -->
 
 <!-- 4. A vs B 퀴즈 -->
-<section class="slide" data-name="A vs B 퀴즈">
+<section class="slide video-resize" data-name="A vs B 퀴즈">
   <div class="slide-inner wide">
     <div class="section-num">SECTION 01</div>
     <h1>같은 브랜드, 같은 제품인데<br class="pc-break" /><span class="mobile-space"> </span><span class="grad">결과가 갈렸습니다</span></h1>
@@ -2953,7 +2987,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- 9. 타이틀 비교 -->
-<section class="slide" data-name="좋은 타이틀 vs 안 좋은 타이틀">
+<section class="slide video-resize" data-name="좋은 타이틀 vs 안 좋은 타이틀">
   <div class="slide-inner wide">
     <div class="section-num">SECTION 02</div>
     <h1><span class="grad">좋은 타이틀</span> vs 안 좋은 타이틀</h1>
@@ -3026,7 +3060,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- 11-1. 공감 방식 1: 문제 제시 / 호기심 유발 -->
-<section class="slide" data-name="① 문제 제시 · 호기심 유발">
+<section class="slide video-resize" data-name="① 문제 제시 · 호기심 유발">
   <div class="slide-inner wide">
     <div class="section-num">SECTION 03 · 공감 방식 ①</div>
     <h1><span class="grad">문제 제시 · 호기심 유발</span></h1>
@@ -3056,7 +3090,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- 11-2. 공감 방식 2: 워너비 -->
-<section class="slide" data-name="② 워너비 제시">
+<section class="slide video-resize" data-name="② 워너비 제시">
   <div class="slide-inner wide">
     <div class="section-num">SECTION 03 · 공감 방식 ②</div>
     <h1><span class="grad">워너비 제시</span></h1>
@@ -3086,7 +3120,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- 11-3. 공감 방식 3: 통념 비판 -->
-<section class="slide" data-name="③ 통념 비판">
+<section class="slide video-resize" data-name="③ 통념 비판">
   <div class="slide-inner wide">
     <div class="section-num">SECTION 03 · 공감 방식 ③</div>
     <h1><span class="grad">통념 비판</span></h1>
@@ -3132,7 +3166,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- 13. 주의 2 -->
-<section class="slide" data-name="주의 2: 무관한 후킹 금지">
+<section class="slide video-resize" data-name="주의 2: 무관한 후킹 금지">
   <div class="slide-inner wide">
     <div class="section-num">SECTION 03 · 주의할 점</div>
     <h1>제품과 무관한 후킹은 <span class="grad">금물</span></h1>
@@ -3281,7 +3315,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- 21. 1영상 1가치 -->
-<section class="slide" data-name="1영상 1가치">
+<section class="slide video-resize" data-name="1영상 1가치">
   <div class="slide-inner wide">
     <div class="section-num">SECTION 05</div>
     <h1>1영상 <span class="grad">1가치 전달</span></h1>
@@ -3375,7 +3409,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- 23. 고ROAS 영상 -->
-<section class="slide" data-name="고ROAS 영상의 구조">
+<section class="slide video-resize" data-name="고ROAS 영상의 구조">
   <div class="slide-inner">
     <div class="section-num">SECTION 05</div>
     <h1><span class="grad">고ROAS 영상</span>의 구조</h1>
@@ -3591,7 +3625,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- 31-1. 같은 제품·같은 가이드라인, 다른 ROAS (테스팅 필요성 입증) -->
-<section class="slide" data-name="같은 제품, 같은 가이드라인, 다른 ROAS">
+<section class="slide video-resize" data-name="같은 제품, 같은 가이드라인, 다른 ROAS">
   <div class="slide-inner wide">
     <div class="section-num">SECTION 07</div>
     <h1>같은 제품 · 같은 가이드라인,<br class="pc-break" /><span class="mobile-space"> </span><span class="grad">다른 ROAS</span></h1>
@@ -3693,7 +3727,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- 32-1-2. 2차 가공 예시 영상 -->
-<section class="slide" data-name="2차 가공 예시">
+<section class="slide video-resize" data-name="2차 가공 예시">
   <div class="slide-inner wide">
     <div class="section-num">SECTION 07</div>
     <h1>2차 가공 <span class="grad">예시</span></h1>
