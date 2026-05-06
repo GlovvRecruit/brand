@@ -894,8 +894,8 @@ em { font-style: normal; color: var(--pink); font-weight: 600; }
 }
 /* 31페이지 전용: 라벨 글씨 키우기 */
 .pool-section .card-label {
-  font-size: 14px;
-  padding: 7px 18px;
+  font-size: 17px;
+  padding: 9px 22px;
   letter-spacing: 0.03em;
 }
 .card-label.soon {
@@ -1002,6 +1002,46 @@ em { font-style: normal; color: var(--pink); font-weight: 600; }
   box-shadow: 0 2px 8px rgba(255, 79, 138, 0.4);
 }
 
+/* 곧 추가될 풀 - 짧은 가로형 미니 카드 */
+.pool-mini-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 20px;
+  background: transparent;
+  border: 1px dashed rgba(255, 47, 156, 0.35);
+  border-radius: 14px;
+  transition: all .25s ease;
+}
+.pool-mini-card:hover {
+  border-color: var(--pink);
+  border-style: solid;
+  transform: translateY(-2px);
+}
+.pool-mini-emoji {
+  font-size: 28px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.pool-mini-name {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text);
+}
+.pool-mini-tag {
+  margin-left: auto;
+  font-family: 'Manrope', sans-serif;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: #fff;
+  background: var(--grad);
+  padding: 4px 10px;
+  border-radius: 999px;
+  box-shadow: 0 2px 8px rgba(255, 79, 138, 0.4);
+  flex-shrink: 0;
+}
+
 @media (max-width: 768px) {
   .pool-stack {
     gap: 20px;
@@ -1017,7 +1057,11 @@ em { font-style: normal; color: var(--pink); font-weight: 600; }
   .pool-name-emoji { font-size: 17px; }
   .pool-soon-tag { font-size: 9px; padding: 3px 7px; }
   .pool-img-fallback { font-size: 48px; }
-  .pool-section .card-label { font-size: 13px; padding: 6px 14px; }
+  .pool-section .card-label { font-size: 15px; padding: 7px 16px; }
+  .pool-mini-card { padding: 14px 14px; gap: 10px; }
+  .pool-mini-emoji { font-size: 22px; }
+  .pool-mini-name { font-size: 14px; }
+  .pool-mini-tag { font-size: 9px; padding: 3px 7px; }
 }
 
 .stat .num {
@@ -2589,15 +2633,15 @@ h1, h2, h3, .lead, .big-line {
   max-width: 462px !important;
 }
 
-/* 모바일: 가로 길이를 85%로 (가운데 정렬) — 비율 유지 */
+/* 모바일: 가로 길이를 80%로 (가운데 정렬) — 비율 유지 */
 @media (max-width: 768px) {
   .video-resize .video-frame,
   .video-resize .video-frame.lg,
   .video-resize .video-grid-2 .video-frame,
   .video-resize .video-compare-lg .video-frame,
   .video-resize .hook-bad-grid .video-frame {
-    width: 85% !important;
-    max-width: 85% !important;
+    width: 80% !important;
+    max-width: 80% !important;
     margin-left: auto !important;
     margin-right: auto !important;
   }
@@ -3582,11 +3626,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
           <div class="pyramid-row" style="font-size: 14px; color: var(--text-3);">각 논거를 뒷받침하는 근거</div>
         </div>
-        <div class="callout pc-only-callout" style="margin-top: 24px; font-size: clamp(16px, 1.7vw, 19px); text-align: left;">
-          <span class="callout-icon">📌</span>
-          소비자가 느낄 <strong>핵심 가치를 먼저 언급</strong>하고,<br />
-          이후 <em>3가지 이하의 주된 근거(ex. USP)</em>로 뒷받침합니다.
-        </div>
       </div>
 
       <div class="split-col">
@@ -3598,6 +3637,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           이후 <em>3가지 이하의 주된 근거(ex. USP)</em>로 뒷받침합니다.
         </div>
       </div>
+    </div>
+
+    <div class="callout pc-only-callout" style="margin-top: 32px; font-size: clamp(16px, 1.7vw, 19px); text-align: left;">
+      <span class="callout-icon">📌</span>
+      소비자가 느낄 <strong>핵심 가치를 먼저 언급</strong>하고,
+      이후 <em>3가지 이하의 주된 근거(ex. USP)</em>로 뒷받침합니다.
     </div>
   </div>
 </section>
@@ -3816,23 +3861,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="pool-section">
         <div class="card-label soon">곧 추가될 풀</div>
         <div class="pool-card-group two">
-          <div class="pool-card-v upcoming">
-            <div class="pool-img-wrap square placeholder">
-              <span class="pool-img-fallback">✈️</span>
-              <div class="pool-overlay">
-                <div class="pool-name">승무원 인플루언서</div>
-                <span class="pool-soon-tag">COMING SOON</span>
-              </div>
-            </div>
+          <div class="pool-mini-card">
+            <span class="pool-mini-emoji">✈️</span>
+            <div class="pool-mini-name">승무원 인플루언서</div>
+            <span class="pool-mini-tag">SOON</span>
           </div>
-          <div class="pool-card-v upcoming">
-            <div class="pool-img-wrap square placeholder">
-              <span class="pool-img-fallback">💄</span>
-              <div class="pool-overlay">
-                <div class="pool-name">40대 인플루언서</div>
-                <span class="pool-soon-tag">COMING SOON</span>
-              </div>
-            </div>
+          <div class="pool-mini-card">
+            <span class="pool-mini-emoji">💄</span>
+            <div class="pool-mini-name">40대 인플루언서</div>
+            <span class="pool-mini-tag">SOON</span>
           </div>
         </div>
       </div>
